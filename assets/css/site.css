@@ -605,12 +605,17 @@ html.cine .ledger .scene-lede { display: none; }
 .site-head { padding: 1rem; row-gap: 0; grid-template-columns: 1fr auto; }
 .head-studio { display: none; }
 .head-actions { grid-column: 2; gap: .6rem; }
-/* Hamburger: three bars that cross into an X while the panel is open. */
-.nav-toggle { display: grid; place-items: center; gap: 5px; width: 2.7rem; height: 2.7rem; border: 1px solid rgba(233,229,219,.22); border-radius: 999px; background: rgba(9,8,12,.6); flex-shrink: 0; }
-.nav-toggle span { display: block; width: 1.1rem; height: 1.5px; background: var(--pale); transition: transform .35s var(--ease), opacity .35s var(--ease); }
-.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+/* Header CTA drops out on mobile — the hamburger panel below already links to #contato. */
+.head-actions > .btn { display: none; }
+/* Plain hamburger, no button chrome — three bars that cross into an X while the panel is open.
+   Raised above the open panel's own z-index (it's a child of .site-head, so it needs its own
+   stacking context here, or the full-screen panel paints over it and there's no way back). */
+.nav-toggle { position: relative; z-index: 891; display: grid; place-items: center; gap: 5px; width: 2.7rem; height: 2.7rem; flex-shrink: 0; }
+.nav-toggle span { display: block; width: 1.3rem; height: 2px; background: var(--pale); transition: transform .35s var(--ease), opacity .35s var(--ease); }
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
-.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.head-mark { position: relative; z-index: 891; }
 /* Nav collapses into a full-screen centered panel, opened by the toggle above. */
 .head-nav { grid-column: unset; grid-row: unset; justify-self: unset; position: fixed; inset: 0; z-index: -1; width: auto;
   flex-direction: column; justify-content: center; align-items: center; gap: 1.4rem;
@@ -621,6 +626,12 @@ html.cine .ledger .scene-lede { display: none; }
 .btn-sm { padding: .58rem .72rem; }
 .circuit-meter { left: 1rem; bottom: .9rem; }
 .power-on { padding-top: 11rem; }
+/* Hero centered end to end on mobile — label, headline, copy, actions, readouts. */
+.power-copy { text-align: center; }
+.power-copy h1 { margin-inline: auto; }
+.power-sub { margin-inline: auto; }
+.power-actions, .power-readouts, .section-label { justify-content: center; }
+.scroll-call { left: 0; right: 0; bottom: 4.5rem; flex-direction: column; justify-content: center; gap: .9rem; }
 body::before { display: none; }
 .footer-row { margin-top: 3.5rem; flex-direction: column; }
 .channels { grid-template-columns: repeat(2, 1fr); }
