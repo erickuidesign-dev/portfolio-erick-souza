@@ -231,7 +231,7 @@ html.is-loading { overflow: hidden; }
 .pre-word { display: inline-block; }
 .pre-word + .pre-word { margin-left: .3em; }
 .preloader.is-flare .motel-ch { text-shadow: 0 0 3px #fff, 0 0 10px #fff, 0 0 24px var(--red), 0 0 54px var(--red), 0 0 110px rgba(255,40,0,.7); transition: text-shadow .25s ease-out; }
-.pre-role { position: absolute; top: 100%; margin-top: 1.5rem; white-space: nowrap; display: flex; gap: .6rem; align-items: center; color: var(--dim); opacity: 0; transition: opacity .9s var(--ease) .2s; }
+.pre-role { margin-top: 1.5rem; white-space: nowrap; display: flex; gap: .6rem; align-items: center; justify-content: center; color: var(--dim); opacity: 0; transition: opacity .9s var(--ease) .2s; }
 .pre-role b { color: var(--red); font-weight: 400; text-shadow: 0 0 9px rgba(255,40,0,.55); }
 .pre-role i { color: var(--red); font-style: normal; }
 .preloader.is-ready .pre-name, .preloader.is-ready .pre-role, .preloader.is-ready .power-switch { opacity: 1; }
@@ -624,8 +624,23 @@ html.cine .ledger .scene-lede { display: none; }
 .head-nav.is-open { z-index: 890; opacity: 1; visibility: visible; pointer-events: auto; transition: opacity .4s var(--ease); }
 .head-nav a { padding: .7rem 0; font-size: 1.5rem; }
 .btn-sm { padding: .58rem .72rem; }
-.circuit-meter { left: 1rem; bottom: .9rem; }
-.power-on { padding-top: 11rem; }
+/* Fixed decorative readout — on desktop it always has clear floor space, but stacked mobile
+   cards scroll right through its corner and it ends up sitting on top of real buttons. */
+.circuit-meter { display: none; }
+/* 16/10 suits the desktop horizontal track; stacked full-width on mobile it's too short for the
+   card's own content, so the placeholder label at the top collides with the title. */
+.sign-card { aspect-ratio: auto; min-height: 22rem; }
+.sign-visual.ph-slot { padding: 1rem; }
+/* .lead-form hard-codes text-align:left, overriding .inquire's own centered layout around it. */
+.lead-form { text-align: center; }
+.lead-lede { margin-inline: auto; }
+.lead-actions { justify-content: center; }
+/* Grid + place-items:center stacks .power-copy and the absolute .scroll-call in the same cell —
+   fine on desktop where the section is comfortably taller than its content, but once the hero
+   text centers and wraps to more lines here, total height passes 100vh and the two collide.
+   Flex column keeps everything in one normal-flow stack instead, so it can never overlap. */
+.power-on { padding-top: 11rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3rem; }
+.scroll-call { position: static; margin-top: .5rem; }
 /* Hero centered end to end on mobile — label, headline, copy, actions, readouts. */
 .power-copy { text-align: center; }
 .power-copy h1 { margin-inline: auto; }
