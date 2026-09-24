@@ -102,6 +102,7 @@ ul { list-style: none; }
 .head-studio b { color: var(--red); font-weight: 700; text-shadow: 0 0 7px rgba(255,40,0,.72), 0 0 18px rgba(255,40,0,.36); }
 .head-studio i { color: var(--red); font-style: normal; font-size: 1.3em; text-shadow: 0 0 8px rgba(255,40,0,.72); }
 .head-actions { grid-column: 3; grid-row: 1; justify-self: end; display: flex; align-items: center; gap: 1rem; }
+.nav-toggle { display: none; }
 .head-lang { display: flex; align-items: center; gap: .35rem; color: rgba(255,255,255,.46); text-shadow: 0 2px 10px #000; }
 .head-lang a { padding: .5rem .3rem; min-height: 44px; display: inline-flex; align-items: center; transition: color .45s var(--ease), text-shadow .45s var(--ease); }
 .head-lang a:hover, .head-lang a[aria-current="true"] { color: #fff; text-shadow: 0 0 8px rgba(255,40,0,.72); }
@@ -254,7 +255,10 @@ html.is-loading { overflow: hidden; }
 /* A single beat of daylight between two dark scenes: the site's one light pane, on purpose
    (Afterglow's own "afterglow" chapter does the same between its hero and the rest). Static and
    fully visible without JS; the cine pin below only adds the scrubbed reveal on top. */
-.chapter-flash { position: relative; overflow: hidden; background: repeating-linear-gradient(180deg, rgba(22,21,26,.05) 0 1px, transparent 1px 2.6rem), var(--chalk); }
+/* Cine-only: on mobile this word never had a scroll-driven reveal to begin with, and sitting there
+   as a plain static block (oversized, overflowing a narrow viewport) just reads as a glitch mid-
+   section — so it's hidden outright below the cine breakpoint, same as the leaves/needle. */
+.chapter-flash { display: none; position: relative; overflow: hidden; background: repeating-linear-gradient(180deg, rgba(22,21,26,.05) 0 1px, transparent 1px 2.6rem), var(--chalk); }
 /* z-index set on the word/leaves themselves (not just the .chapter-flash wrapper), so they still
    stack above the needle (z-index 4) even if something strips the wrapper div. */
 .chapter-word { position: relative; z-index: 6; display: block; margin: 0 auto; padding: 18vh 0; width: max-content; color: var(--ink); font-size: clamp(4rem, 16vw, 13rem); line-height: .84; letter-spacing: -.045em; text-align: center; }
@@ -264,7 +268,7 @@ html.is-loading { overflow: hidden; }
 /* Covers the whole pinned #projetos viewport; no fill of its own so the split bares the real
    scene (cards, light-field) sitting behind it, not a stand-in color. Scoped to #projetos only —
    the Serviços -> Processo flash below is a plain standalone pinned section, not an overlay. */
-html.cine #projetos .chapter-flash { position: absolute; inset: 0; z-index: 6; background: none; }
+html.cine #projetos .chapter-flash { display: block; position: absolute; inset: 0; z-index: 6; background: none; }
 html.cine #projetos .chapter-word { padding: 0; position: absolute; inset: 0; z-index: 6; display: grid; place-items: center; }
 /* Serviços -> Processo: a fixed black curtain fades in over whichever scene is on screen (still
    Serviços at first), shows "PROCESSO", clears the word, then fades itself out to bare Processo —
@@ -598,10 +602,22 @@ html.cine .ledger .scene-lede { display: none; }
 .reading { grid-template-columns: 6rem 1fr; }
 }
 @media (max-width: 780px) {
-.site-head { padding: 1rem; row-gap: .7rem; }
+.site-head { padding: 1rem; row-gap: 0; grid-template-columns: 1fr auto; }
 .head-studio { display: none; }
-.head-nav { width: 100%; justify-content: space-between; overflow-x: auto; padding: .42rem .55rem; }
-.head-nav a { padding-inline: .32rem; }
+.head-actions { grid-column: 2; gap: .6rem; }
+/* Hamburger: three bars that cross into an X while the panel is open. */
+.nav-toggle { display: grid; place-items: center; gap: 5px; width: 2.7rem; height: 2.7rem; border: 1px solid rgba(233,229,219,.22); border-radius: 999px; background: rgba(9,8,12,.6); flex-shrink: 0; }
+.nav-toggle span { display: block; width: 1.1rem; height: 1.5px; background: var(--pale); transition: transform .35s var(--ease), opacity .35s var(--ease); }
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+/* Nav collapses into a full-screen centered panel, opened by the toggle above. */
+.head-nav { grid-column: unset; grid-row: unset; justify-self: unset; position: fixed; inset: 0; z-index: -1; width: auto;
+  flex-direction: column; justify-content: center; align-items: center; gap: 1.4rem;
+  padding: 6rem 2rem 3rem; border: none; border-radius: 0; background: rgba(8,7,10,.97); backdrop-filter: blur(16px);
+  opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .4s var(--ease), visibility 0s linear .4s; }
+.head-nav.is-open { z-index: 890; opacity: 1; visibility: visible; pointer-events: auto; transition: opacity .4s var(--ease); }
+.head-nav a { padding: .7rem 0; font-size: 1.5rem; }
 .btn-sm { padding: .58rem .72rem; }
 .circuit-meter { left: 1rem; bottom: .9rem; }
 .power-on { padding-top: 11rem; }
@@ -610,6 +626,10 @@ body::before { display: none; }
 .channels { grid-template-columns: repeat(2, 1fr); }
 .pre-name { font-size: clamp(1.9rem, 8.6vw, 3.2rem); }
 .pre-foot { left: 1rem; right: 1rem; bottom: 1.4rem; gap: .8rem; }
+/* Centered components: section eyebrows/readouts stop hugging the left edge. */
+.scene-head { justify-content: center; text-align: center; }
+.scene-head-block { text-align: center; }
+.scene-head-block .section-label { justify-content: center; }
 }
 @media (max-width: 480px) {
 .head-actions { gap: .4rem; }
