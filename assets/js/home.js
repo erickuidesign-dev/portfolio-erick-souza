@@ -328,6 +328,9 @@
           .to(chars.bodyChars, { autoAlpha: 1, duration: .01, stagger: .0055, ease: 'none' }, slotStart + .5);
       }
     });
+    // Dead scroll after the last card's text finishes typing, so the Processo curtain never
+    // starts darkening before "Motion e 3D" is fully readable.
+    servicesTl.to({}, { duration: 1.2 }, PART_START + (serviceParts.length - 1) * PART_SLOT + PART_SLOT);
 
     /* Blinds: a venetian curtain closes over the tail of the Projetos pin and opens again over
        the head of the Serviços one, like the reference site's own scene change. One function
@@ -405,29 +408,40 @@
         if (!out || !into) return 0;
         const y = window.scrollY;
         const fadeInStart = out.end - PROCESS_FADE_SPAN;
-        const fadeOutEnd = into.start + PROCESS_FADE_SPAN;
+        // The exit zoom finishes exactly at Processo's own pin start, not after it — otherwise the
+        // word is still fading out while step 01 is already scrolling in underneath it.
+        const fadeOutStart = into.start - PROCESS_FADE_SPAN;
         if (y <= fadeInStart) return 0;
         if (y < out.end) return (y - fadeInStart) / PROCESS_FADE_SPAN;
-        if (y < into.start) return 1;
-        if (y < fadeOutEnd) return 1 + (y - into.start) / PROCESS_FADE_SPAN;
+        if (y < fadeOutStart) return 1;
+        if (y < into.start) return 1 + (y - fadeOutStart) / PROCESS_FADE_SPAN;
         return 2;
       };
       gsap.ticker.add(() => {
         const level = processTarget();
-        gsap.set(processFlash, { autoAlpha: level <= 1 ? level : 2 - level });
         // The word waits for the screen to read as fully black first, then fades in on its own —
         // not racing the curtain. On the way out it zooms in as it fades, instead of just vanishing.
+        let flashAlpha;
         let wordAlpha = 0;
         let wordScale = 1;
         if (level <= 1) {
+          flashAlpha = level;
           wordAlpha = gsap.utils.clamp(0, 1, (level - .85) / .15);
         } else {
           // Spread across the whole fade-out span (not just the first slice of it) so the zoom
-          // has real scroll distance to play out slowly, growing large before it's gone.
+          // has real scroll distance to play out slowly, growing large before it's gone. The curtain
+          // itself stays locked to the word's own alpha here, not a separate linear fade — otherwise
+          // the black backdrop clears before the zoomed word finishes disappearing, and Processo shows
+          // through underneath a still-visible "PROCESSO".
           const outProgress = gsap.utils.clamp(0, 1, level - 1);
           wordScale = 1 + outProgress * 1.6;
-          wordAlpha = outProgress < .7 ? 1 : 1 - (outProgress - .7) / .3;
+          // Held opaque through nearly the whole zoom, then a quick clean cut in the last slice —
+          // a long crossfade left both the word and Processo's own step 01 half-visible at once,
+          // reading as noise instead of a clean reveal.
+          wordAlpha = outProgress < .92 ? 1 : 1 - (outProgress - .92) / .08;
+          flashAlpha = wordAlpha;
         }
+        gsap.set(processFlash, { autoAlpha: flashAlpha });
         gsap.set(processWord, { autoAlpha: wordAlpha, scale: wordScale });
       });
     }
@@ -438,15 +452,38 @@
     const steps = readings.length;
     const stepNow = $('[data-step-now]', process);
     gsap.set(readings, { autoAlpha: 0, y: 60, filter: 'blur(12px)' });
+    // Each step's number + title stay put; the title and body type themselves out char by char
+    // while their card is on screen, like the Serviços post-its.
+    const readingChars = readings.map((reading) => {
+      const h3 = $('h3', reading);
+      const p = $('p', reading);
+      if (!window.SplitText || !h3 || !p) return null;
+      const titleSplit = new SplitText(h3, { type: 'chars', charsClass: 'type-ch' });
+      const bodySplit = new SplitText(p, { type: 'chars', charsClass: 'type-ch' });
+      gsap.set([...titleSplit.chars, ...bodySplit.chars], { autoAlpha: 0 });
+      return { titleChars: titleSplit.chars, bodyChars: bodySplit.chars };
+    });
     const processTl = gsap.timeline({
       scrollTrigger: {
-        id: 'processo', trigger: process, start: 'top top', end: () => `+=${innerHeight * (steps * .7 + 1)}`,
+        id: 'processo', trigger: process, start: 'top top', end: () => `+=${innerHeight * (steps * .95 + 1)}`,
         pin: true, scrub: 1, anticipatePin: 1, invalidateOnRefresh: true,
         onUpdate: (self) => { if (stepNow) stepNow.textContent = String(Math.min(steps, Math.floor(self.progress * steps) + 1)).padStart(2, '0'); },
       },
     });
+    const TITLE_TYPE_SPAN = .12;
+    const BODY_TYPE_SPAN = .38;
     readings.forEach((reading, i) => {
       processTl.to(reading, { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: .35, ease: 'none' }, i);
+      const chars = readingChars[i];
+      if (chars) {
+        // Stagger scaled to each step's own char count, so a longer paragraph still finishes typing
+        // with room to spare before the card fades out at i + .7.
+        const titleStagger = chars.titleChars.length > 1 ? TITLE_TYPE_SPAN / (chars.titleChars.length - 1) : 0;
+        const bodyStagger = chars.bodyChars.length > 1 ? BODY_TYPE_SPAN / (chars.bodyChars.length - 1) : 0;
+        processTl
+          .to(chars.titleChars, { autoAlpha: 1, duration: .01, stagger: titleStagger, ease: 'none' }, i + .15)
+          .to(chars.bodyChars, { autoAlpha: 1, duration: .01, stagger: bodyStagger, ease: 'none' }, i + .28);
+      }
       if (i < steps - 1) processTl.to(reading, { autoAlpha: 0, y: -60, filter: 'blur(12px)', duration: .3, ease: 'none' }, i + .7);
     });
     processTl

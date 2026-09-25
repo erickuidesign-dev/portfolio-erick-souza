@@ -10,6 +10,18 @@
   if (!loader) return;
   if (!doc.classList.contains('is-loading')) { loader.remove(); return; }
 
+  // Same file the hero itself uses on this screen size (hero-video.js), so the background reads
+  // as the same footage, not a different crop.
+  const bgVideo = loader.querySelector('.pre-video-el');
+  if (bgVideo) {
+    const desktopSrc = bgVideo.dataset.srcDesktop;
+    if (desktopSrc && !matchMedia('(max-width: 780px)').matches) {
+      bgVideo.src = desktopSrc;
+      bgVideo.load();
+      bgVideo.play().catch(() => {});
+    }
+  }
+
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const MIN_MS = reduced ? 700 : 2000;   // shortest time on screen, counted from the start of the page
   const FONT_WAIT_MS = 900;              // longest wait for the display font before showing the name
@@ -32,6 +44,7 @@
   const paint = (progress) => {
     const percent = Math.round(progress * 100);
     loader.style.setProperty('--p', progress.toFixed(3));
+    loader.style.setProperty('--pb', Math.sqrt(progress).toFixed(3)); // blur clears slower, sharp only near the end
     if (percent !== shownPercent) {
       shownPercent = percent;
       counter.textContent = String(percent).padStart(3, '0');
