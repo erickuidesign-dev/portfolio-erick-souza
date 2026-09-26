@@ -1,0 +1,107 @@
+1. Estratégia de UX & CROMinimização da Carga Cognitiva: Design focado no produto (Dark Mode Premium), eliminando ruídos visuais. Uso de Progressive Disclosure no FAQ para evitar fadiga de rolagem no mobile.Leis de UX Aplicadas:Lei de Fitts: CTAs principais possuem áreas de clique generosas ($48\text{px}$ a $56\text{px}$ de altura) e posicionamento fixo/aderente (sticky) no mobile.Efeito Von Restorff: Contraste extremo entre o fundo Carbon Black (#111111) e o CTA Vermelho Dinâmico (#E53E3E).Lei da Proximidade (Gestalt): Agrupamento claro entre benefícios técnicos e as dores que eles resolvem.
+
+2. Wireframe em Texto (Sitemap Estrutural)
+
+[HEADER] -> Logo (Esquerda) | Links de Navegação Âncora (Centro) | CTA WhatsApp (Direita)
+  └── [HERO SECTION] 
+        ├── Badge: "Pronta Entrega no Brasil - Envio em 3 dias"
+        ├── H1: Headline de Performance Total
+        ├── Subhead: Contexto de Engenharia World Tour
+        ├── CTAs Primário (Botão) & Secundário (Texto Link)
+        ├── Trust Badges (Frete Grátis | 12x Sem Juros | Garantia Oficial)
+        └── Imagem Hero (Bicicleta em Ângulo Heroico / Fundo Escuro)
+  └── [PROBLEM SECTION]
+        ├── H2: Identificação da Perda de Watts
+        └── Grid de 3 Cards (Arrasto Aero, Troca Imprecisa, Falta de Dados)
+  └── [SOLUTION SECTION]
+        ├── H2: Apresentação da Factor ONE
+        └── Bloco Split (Texto Explicativo à Esquerda | Detalhe do Quadro Twin Vane à Direita)
+  └── [BENEFITS SECTION]
+        ├── H2: Pilares de Performance
+        └── Grid de 4 Cards Interativos com Ícones Customizados
+  └── [DIFFERENTIALS SECTION]
+        ├── H2: Tabela Comparativa de Componentes (Estilo Tabela de Preços Stripe)
+        └── CTA de Apoio Contextual
+  └── [SOCIAL PROOF SECTION]
+        ├── H2: Validação dos Pares
+        └── Slider/Carrossel de Depoimentos de Elite (Avatares + Avaliação 5 Estrelas)
+  └── [FAQ SECTION]
+        ├── H2: Respostas Rápidas (Objeções)
+        └── Accordion Interativo (Apenas perguntas visíveis inicialmente)
+  └── [FINAL CTA CONTEXT]
+        └── Bloco Centralizado com Urgência Implícita (Estoque Limitado) + CTA Principal
+[FOOTER] -> Links Legais | Selos de Segurança | Direitos Autorais
+
+
+3. Design System Essentials (UI)
+
+Paleta de Cores
+Primary (Fundo): Carbon Black — #111111
+Secondary (Superfícies/Cards): Deep Gray — #1C1C1E
+Accent (Ação/Destaque): Vermelho Dinâmico — #E53E3
+Neutral High (Texto Principal): Branco Puro — #FFFFFF
+Neutral Low (Texto Secundário): Prata Escovado — #A0AEC0
+Success (Alertas/Badges): Emerald Green — #10B981
+
+Tipografia
+H1 (Títulos Hero): Inter ou SF Pro Display | Bold ($700$) | Tamanho: $48\text{px}$ (Desktop) / $32\text{px}$ (Mobile) | Line Height: $1.2$
+H2 (Títulos de Seção): Inter | SemiBold ($600$) | Tamanho: $36\text{px}$ (Desktop) / $26\text{px}$ (Mobile) | Line Height: $1.3$
+Body (Textos de Apoio): Inter | Regular ($400$) | Tamanho: $16\text{px}$ | Line Height: $1.6$
+Small Text (Badges/Legendas): Inter | Medium ($500$) | Tamanho: $12\text{px}$ | Line Height: $1.4$
+
+Sistema de Espaçamentos (Tokens)
+Componentes internos (Paddings de cards/botões): $8\text{px}$, $16\text{px}$, $24\text{px}$
+Margens e seções menores: $32\text{px}$, $48\text{px}$
+Separação de blocos principais macro: $64\text{px}$, $96\text{px}$
+
+4. Estrutura Completa de Layout & Componentes (Mobile, Tablet, Desktop)
+
+Componentes Críticos
+Botão CTA Principal: Altura $54\text{px}$, border-radius: 6px, cor #E53E3E. Estados: Hover (Escurecer 10%), Active (Scale 0.98), Focus (Outline outline-white), Disabled (Opacidade 40%).
+Cards de Problema/Solução: Fundo #1C1C1E, borda sutil de $1\text{px}$ em #2C2C2E para profundidade (Estilo Linear app).
+
+Layout Dinâmico por Resolução
+Layout Mobile ($375\text{px}$ — 4 Colunas)
+
+Navegação: Header compacto com Logo e botão flutuante/sticky de CTA no rodapé da tela após o primeiro scroll.
+
+Hero: Conteúdo empilhado verticalmente. Badge -> Título -> Subtítulo -> CTA Principal -> Imagem da Bike.
+
+Grids: Todos os blocos de benefícios e problemas se transformam em rolagem horizontal lateral (Swipe Cards) para evitar rolagem infinita vertical.
+
+FAQ: Accordions fechados ocupando 100% da largura da tela.
+
+Layout Tablet ($768\text{px}$ — 8 Colunas)
+
+
+Hero: Grid assimétrico perfeito. Esquerda (6 colunas) focado em texto e ações; Direita (6 colunas) com a imagem em altíssima definição da Factor ONE isolada em fundo escuro com iluminação dramática de estúdio.
+
+Grids de Seção: 3 ou 4 cards alinhados horizontalmente utilizando o espaçamento de $32\text{px}$ (Gap).
+
+FAQ: Centralizado ocupando 8 colunas centrais para melhor escaneabilidade visual (Padrão de leitura em F).
+
+Layout Desktop ($1440\text{px}$ — 12 Colunas)
+
+Hero: Grid assimétrico perfeito. Esquerda (6 colunas) focado em texto e ações; Direita (6 colunas) com a imagem em altíssima definição da Factor ONE isolada em fundo escuro com iluminação dramática de estúdio.
+
+Grids de Seção: 3 ou 4 cards alinhados horizontalmente utilizando o espaçamento de $32\text{px}$ (Gap).
+
+FAQ: Centralizado ocupando 8 colunas centrais para melhor escaneabilidade visual (Padrão de leitura em F).
+
+
+5. Sugestões de Imagens & Direção de Arte
+
+Imagem Hero Principal: Visão lateral absoluta ($180^{\circ}$) da bike contra fundo infinito cinza-escuro texturizado (estilo estúdio automobilístico premium).
+
+Seção Solução/Diferenciais: Macrofotografia com profundidade de campo reduzida focando no Medidor de Potência SRAM RED no pedivela e no cockpit integrado Black Inc livre de cabos.
+
+Imagens de Fundo: Texturas sutis que remetem à fibra de carbono unidirecional tratada.
+
+6. Posicionamento de CTAs & Ideias para Testes A/B
+Distribuição Estratégica de CTAs
+
+Hero Section: CTA Primário ([Quero Garantir Minha Factor ONE]) focado em fechamento direto + Link secundário para WhatsApp.
+
+Seção de Benefícios (Meio de Funil): Botão contextual focado na oferta comercial ([Verificar Tamanhos Disponíveis no Estoque]).
+
+Rodapé / CTA Final: Caixa de fechamento em alto contraste com gatilho de urgência de estoque ([Aproveitar 12x Sem Juros e Frete Grátis]).

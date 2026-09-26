@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AQUASMART — Living Design System v1.0</title>
+  
+  <!-- Google Fonts: Barlow (Sans-Serif) & Instrument Serif (Italic Serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  
+  <!-- Iconify Web Component Runtime -->
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+
+  <!-- GSAP for Interactions -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['"Instrument Serif"', 'serif'],
+            body: ['"Barlow"', 'sans-serif'],
+          },
+          colors: {
+            onyx: '#050508',        // Deep Space Onyx
+            coral: '#BED20A',       // Client Lime Green (Tailwind alias 'coral')
+            bioBlue: '#1286C3',     // Client Marine Blue
+            white: '#ffffff',
+            glass: 'rgba(255, 255, 255, 0.01)',
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Estilos Especiais do Design System (Glassmorphic e Animações) -->
+  <style>
+    body {
+      background-color: #050508;
+      color: #ffffff;
+    }
+
+    /* LIQUID GLASS SURFACES FROM PREMIUM DESIGN SYSTEM */
+    .liquid-glass {
+      background: rgba(255, 255, 255, 0.01);
+      background-blend-mode: luminosity;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: none;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .liquid-glass::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.2px;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.35) 0%,
+        rgba(255, 255, 255, 0.1) 20%,
+        rgba(255, 255, 255, 0) 40%,
+        rgba(255, 255, 255, 0) 60%,
+        rgba(255, 255, 255, 0.1) 80%,
+        rgba(255, 255, 255, 0.35) 100%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .liquid-glass-strong {
+      background: rgba(255, 255, 255, 0.01);
+      background-blend-mode: luminosity;
+      backdrop-filter: blur(50px);
+      -webkit-backdrop-filter: blur(50px);
+      border: none;
+      box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.4),
+        inset 0 1px 1px rgba(255, 255, 255, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .liquid-glass-strong::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.4px;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.45) 0%,
+        rgba(255, 255, 255, 0.15) 20%,
+        rgba(255, 255, 255, 0) 40%,
+        rgba(255, 255, 255, 0) 60%,
+        rgba(255, 255, 255, 0.15) 80%,
+        rgba(255, 255, 255, 0.45) 100%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    /* Glow Blobs Floating Animation */
+    @keyframes float-blob {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-20px) scale(1.05); }
+    }
+    .glow-blob {
+      animation: float-blob 8s ease-in-out infinite;
+    }
+    
+    .toast-copy {
+      opacity: 0;
+      transform: translateY(20px) translateX(-50%);
+      transition: all 0.3s ease-in-out;
+    }
+    .toast-copy.show {
+      opacity: 1;
+      transform: translateY(0) translateX(-50%);
+    }
+  </style>
+</head>
+<body class="font-body selection:bg-bioBlue/30 selection:text-white overflow-x-hidden pb-24">
+
+  <!-- Glowing Bioluminescent Background Blobs -->
+  <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+    <div class="absolute -top-40 -left-40 w-[500px] h-[500px] bg-blue-900/10 rounded-full blur-[120px] glow-blob"></div>
+    <div class="absolute top-1/2 -right-40 w-[600px] h-[600px] bg-lime-950/5 rounded-full blur-[140px] glow-blob"></div>
+  </div>
+
+  <!-- Header Nav -->
+  <header class="relative z-10 border-b border-white/10 bg-[#020204]/60 backdrop-blur-md py-6 px-6 lg:px-16 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <iconify-icon class="text-bioBlue" height="24" icon="solar:aquarium-bold-duotone" width="24"></iconify-icon>
+      <span class="text-white font-body font-bold text-xl tracking-tight uppercase">AQUA<span class="text-bioBlue">SMART</span></span>
+    </div>
+    <div class="flex items-center gap-4">
+      <span class="text-[10px] font-mono bg-coral/10 text-coral border border-coral/20 px-3 py-1.5 rounded-full uppercase tracking-wider font-bold">Living Design System v1.0</span>
+      <a href="index.html" class="liquid-glass text-white/80 hover:text-white transition-colors text-xs font-semibold rounded-full px-5 py-2">Voltar para o Site →</a>
+    </div>
+  </header>
+
+  <main class="relative z-10 max-w-6xl mx-auto px-6 mt-16">
+    
+    <!-- Hero Intro -->
+    <section class="mb-16">
+      <h1 class="font-heading italic text-6xl md:text-7xl text-white tracking-tight mb-4">A Biblioteca Estética Viva</h1>
+      <p class="text-lg font-body font-light text-white/60 max-w-2xl leading-relaxed">
+        Este é o guia visual interativo oficial do ecossistema **AQUASMART**. Aqui você pode visualizar em tempo real e copiar as paletas, tipografias, efeitos glassmorphic e componentes interativos implementados na landing page principal.
+      </p>
+    </section>
+
+    <!-- 1. SISTEMA DE CORES -->
+    <section class="mb-20 border-t border-white/10 pt-12">
+      <h2 class="font-heading italic text-4xl text-white mb-6">1. Paleta Cromática Abissal</h2>
+      <p class="text-sm font-body font-light text-white/50 mb-8 max-w-xl">
+        Cores calibradas matematicamente para contraste OLED supremo e bioluminescência digital. Clique no card de qualquer cor para copiar o seu código HEX instantaneamente.
+      </p>
+      
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+        <!-- Onyx Space -->
+        <button onclick="copyToClipboard('#050508')" class="group text-left focus:outline-none liquid-glass rounded-3xl p-5 border border-white/5 hover:border-white/20 transition-all duration-300">
+          <div class="w-full h-24 rounded-2xl bg-[#050508] border border-white/10 shadow-inner mb-4 transition-transform group-hover:scale-102"></div>
+          <span class="text-xs font-bold text-white uppercase block">Onyx Deep Space</span>
+          <span class="text-[10px] font-mono text-white/40 block mt-1">HEX: #050508</span>
+          <span class="text-[10px] font-mono text-white/40 block">Tailwind: onyx</span>
+        </button>
+
+        <!-- Marine Blue -->
+        <button onclick="copyToClipboard('#1286C3')" class="group text-left focus:outline-none liquid-glass rounded-3xl p-5 border border-white/5 hover:border-white/20 transition-all duration-300">
+          <div class="w-full h-24 rounded-2xl bg-[#1286C3] shadow-[0_0_15px_rgba(18,134,195,0.4)] mb-4 transition-transform group-hover:scale-102"></div>
+          <span class="text-xs font-bold text-white uppercase block">Marine Blue</span>
+          <span class="text-[10px] font-mono text-white/40 block mt-1">HEX: #1286C3</span>
+          <span class="text-[10px] font-mono text-white/40 block">Tailwind: bioBlue</span>
+        </button>
+
+        <!-- Lime Green -->
+        <button onclick="copyToClipboard('#BED20A')" class="group text-left focus:outline-none liquid-glass rounded-3xl p-5 border border-white/5 hover:border-white/20 transition-all duration-300">
+          <div class="w-full h-24 rounded-2xl bg-[#BED20A] shadow-[0_0_15px_rgba(190,210,10,0.4)] mb-4 transition-transform group-hover:scale-102"></div>
+          <span class="text-xs font-bold text-white uppercase block">Lime Green</span>
+          <span class="text-[10px] font-mono text-white/40 block mt-1">HEX: #BED20A</span>
+          <span class="text-[10px] font-mono text-white/40 block">Tailwind: coral</span>
+        </button>
+
+        <!-- Pure White -->
+        <button onclick="copyToClipboard('#FFFFFF')" class="group text-left focus:outline-none liquid-glass rounded-3xl p-5 border border-white/5 hover:border-white/20 transition-all duration-300">
+          <div class="w-full h-24 rounded-2xl bg-[#ffffff] mb-4 transition-transform group-hover:scale-102"></div>
+          <span class="text-xs font-bold text-white uppercase block">Pure White</span>
+          <span class="text-[10px] font-mono text-white/40 block mt-1">HEX: #FFFFFF</span>
+          <span class="text-[10px] font-mono text-white/40 block">Tailwind: white</span>
+        </button>
+
+        <!-- Glass Background -->
+        <button onclick="copyToClipboard('rgba(255,255,255,0.01)')" class="group text-left focus:outline-none liquid-glass rounded-3xl p-5 border border-white/5 hover:border-white/20 transition-all duration-300">
+          <div class="w-full h-24 rounded-2xl bg-white/5 border border-white/10 mb-4 transition-transform group-hover:scale-102"></div>
+          <span class="text-xs font-bold text-white uppercase block">Glass Background</span>
+          <span class="text-[10px] font-mono text-white/40 block mt-1">RGBA: (255,255,255,0.01)</span>
+          <span class="text-[10px] font-mono text-white/40 block">Tailwind: glass</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 2. TIPOGRAFIA -->
+    <section class="mb-20 border-t border-white/10 pt-12">
+      <h2 class="font-heading italic text-4xl text-white mb-6">2. Sistema Tipográfico Dual</h2>
+      <p class="text-sm font-body font-light text-white/50 mb-8 max-w-xl">
+        Conexão da tipografia display editorial e poética com a leitura e dados de precisão científica.
+      </p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <!-- Display serif -->
+        <div class="liquid-glass rounded-3xl p-8 border border-white/5">
+          <span class="text-[10px] font-mono text-bioBlue font-bold uppercase tracking-wider block mb-4">Display / Títulos: Instrument Serif Italic</span>
+          <div class="border-b border-white/10 pb-6 mb-6">
+            <h3 class="font-heading italic text-5xl md:text-6xl text-white leading-none">Uma Obra de Arte Viva.</h3>
+            <span class="text-[11px] text-white/40 block mt-3">Utilização: Títulos Display de impacto, H1 e H2 de seções</span>
+          </div>
+          <div class="flex flex-col gap-2 text-white/60">
+            <span class="font-heading italic text-xl">AQUASMART — Bioma Científico</span>
+            <span class="font-heading italic text-3xl">A Joalheria Genética de Luxo</span>
+            <span class="font-heading italic text-4xl">Fase 01: Hatching Showcase</span>
+          </div>
+        </div>
+
+        <!-- Body Barlow -->
+        <div class="liquid-glass rounded-3xl p-8 border border-white/5">
+          <span class="text-[10px] font-mono text-coral font-bold uppercase tracking-wider block mb-4">Suporte / Textos: Barlow (Sans-Serif)</span>
+          <div class="border-b border-white/10 pb-6 mb-6">
+            <p class="font-body text-base font-light text-white/70 leading-relaxed">
+              Peixes ornamentais marinhos nobres nascidos e criados em cativeiro. Genética de luxo desenvolvida em laboratório com imunidade perfeita e adaptação superior.
+            </p>
+            <span class="text-[11px] text-white/40 block mt-3">Utilização: Descrições, especificações, tabelas de dados e botões</span>
+          </div>
+          <div class="grid grid-cols-2 gap-4 text-xs font-body font-medium">
+            <div class="flex flex-col gap-1">
+              <span class="text-white/40 text-[9px] uppercase font-bold tracking-wider">Peso 300 (Light)</span>
+              <span class="font-light text-white/80">Monitoramento individual sob lentes.</span>
+            </div>
+            <div class="flex flex-col gap-1">
+              <span class="text-white/40 text-[9px] uppercase font-bold tracking-wider">Peso 400 (Regular)</span>
+              <span class="font-normal text-white/90">Parâmetros estáveis de precisão IoT.</span>
+            </div>
+            <div class="flex flex-col gap-1">
+              <span class="text-white/40 text-[9px] uppercase font-bold tracking-wider">Peso 600 (Semi-Bold)</span>
+              <span class="font-semibold text-white">Casal Nemo Ocellaris Imune</span>
+            </div>
+            <div class="flex flex-col gap-1">
+              <span class="text-white/40 text-[9px] uppercase font-bold tracking-wider">Peso 700 (Bold)</span>
+              <span class="font-bold text-white">GARANTIA DE 180 DIAS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. GLASSMORPHISM & EFEITOS -->
+    <section class="mb-20 border-t border-white/10 pt-12">
+      <h2 class="font-heading italic text-4xl text-white mb-6">3. Superfícies Glassmorphic</h2>
+      <p class="text-sm font-body font-light text-white/50 mb-8 max-w-xl">
+        Sensação de visores transparentes e tanques de biologia estéril por meio de blurs e bordas lineares translúcidas.
+      </p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Liquid Glass Regular -->
+        <div class="liquid-glass rounded-3xl p-8 border border-white/5 flex flex-col justify-between min-h-[220px]">
+          <div>
+            <span class="text-[10px] font-mono text-bioBlue font-bold uppercase tracking-wider block">Classe: .liquid-glass</span>
+            <h4 class="font-heading italic text-2xl text-white mt-3">Vidro Líquido Padrão</h4>
+            <p class="text-xs font-body font-light text-white/60 mt-1 max-w-sm leading-relaxed">
+              Borrão de fundo de 8px com sombra interna e gradiente vertical reflexivo fino na borda externa. Ideal para cards de coleção, navbars e badges.
+            </p>
+          </div>
+          <span class="text-[10px] font-mono text-white/35 mt-4">backdrop-filter: blur(8px) | border: inline-gradient</span>
+        </div>
+
+        <!-- Liquid Glass Strong -->
+        <div class="liquid-glass-strong rounded-3xl p-8 flex flex-col justify-between min-h-[220px]">
+          <div>
+            <span class="text-[10px] font-mono text-coral font-bold uppercase tracking-wider block">Classe: .liquid-glass-strong</span>
+            <h4 class="font-heading italic text-2xl text-white mt-3">Vidro Líquido Profundo</h4>
+            <p class="text-xs font-body font-light text-white/60 mt-1 max-w-sm leading-relaxed">
+              Borrão de fundo de 50px com sombras externas projetadas de profundidade e bordas reflexivas de 1.4px. Ideal para grandes layouts e caixas de oferta especial.
+            </p>
+          </div>
+          <span class="text-[10px] font-mono text-white/35 mt-4">backdrop-filter: blur(50px) | border: linear-gradient-strong</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. BIBLIOTECA DE COMPONENTES INTERATIVOS -->
+    <section class="mb-20 border-t border-white/10 pt-12">
+      <h2 class="font-heading italic text-4xl text-white mb-6">4. Componentes Reutilizáveis Ativos</h2>
+      <p class="text-sm font-body font-light text-white/50 mb-8 max-w-xl">
+        Componentes de interface reais extraídos do código do website, totalmente interativos.
+      </p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Módulo de Botões e Badges -->
+        <div class="liquid-glass rounded-3xl p-8 border border-white/5 flex flex-col justify-between min-h-[350px]">
+          <div>
+            <span class="text-[10px] font-mono text-bioBlue font-bold uppercase tracking-wider block mb-4">A. Botões & Badges</span>
+            
+            <div class="flex flex-wrap gap-2 mb-6">
+              <!-- Category Badge -->
+              <div class="liquid-glass rounded-full px-3 py-1 flex items-center gap-1.5 border border-white/5">
+                <span class="w-1.5 h-1.5 rounded-full bg-coral shadow-[0_0_8px_#BED20A]"></span>
+                <span class="text-[9px] text-white/80 font-bold uppercase tracking-wider">Rigor Científico</span>
+              </div>
+              <div class="liquid-glass rounded-full px-3 py-1 flex items-center gap-1.5 border border-white/5">
+                <span class="w-1.5 h-1.5 rounded-full bg-bioBlue shadow-[0_0_8px_#1286C3]"></span>
+                <span class="text-[9px] text-white/80 font-bold uppercase tracking-wider">Coleção Limitada</span>
+              </div>
+            </div>
+            
+            <div class="flex flex-col gap-3">
+              <!-- Primary Magnetic Button (White) -->
+              <a href="#" class="hero-cta bg-white text-black hover:bg-white/90 transition-all duration-300 rounded-full px-6 py-3.5 font-semibold text-xs flex items-center justify-center gap-1.5 hover:scale-102 shadow-lg">
+                Adquirir Kit Seguro
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
+              </a>
+              
+              <!-- Secondary Button (Glass Strong) -->
+              <a href="#" class="liquid-glass-strong hover:scale-102 transition-all duration-300 rounded-full px-6 py-3.5 text-white font-medium text-xs flex items-center justify-center gap-2">
+                Falar com Biólogo Marinho
+              </a>
+            </div>
+          </div>
+          <span class="text-[10px] font-mono text-white/35 mt-4">Magnetic hover e elastic bounce back integrados</span>
+        </div>
+
+        <!-- Módulo Bento Grid Card -->
+        <article class="liquid-glass rounded-3xl p-8 flex flex-col justify-between min-h-[350px] border border-white/5 hover:border-white/15 transition-all duration-300">
+          <div>
+            <div class="flex items-center gap-2">
+              <iconify-icon class="text-bioBlue/80" icon="solar:bacteria-bold-duotone" width="18" height="18"></iconify-icon>
+              <span class="text-xs font-semibold tracking-wider text-bioBlue/85 font-body uppercase">FASE 01</span>
+            </div>
+            <h3 class="font-heading italic text-2xl text-white mt-3">O Milagre Oculto do Nascimento</h3>
+            <p class="text-xs font-body font-light text-white/60 mt-2 leading-relaxed">
+              Cada ovo e alevino da Aquasmart é monitorado de forma individual sob as lentes de nossos microscópios.
+            </p>
+          </div>
+          <div class="mt-6 flex flex-col gap-2.5 font-mono text-[10px] border-t border-white/10 pt-5 text-bioBlue">
+            <div class="flex justify-between border-b border-white/5 pb-1.5"><span>pH Tanque:</span><span class="font-bold text-white">8.3</span></div>
+            <div class="flex justify-between"><span>Amônia:</span><span class="font-bold text-emerald-400">Zero (Seguro)</span></div>
+          </div>
+        </article>
+
+        <!-- Módulo de Telemetria IoT e Accordion -->
+        <div class="liquid-glass rounded-3xl p-8 border border-white/5 flex flex-col justify-between min-h-[350px]">
+          <div>
+            <span class="text-[10px] font-mono text-coral font-bold uppercase tracking-wider block mb-4">C. Telemetria IoT Reativa</span>
+            
+            <div class="grid grid-cols-2 gap-3 mb-6">
+              <div class="bg-white/5 border border-white/10 rounded-2xl p-3.5 text-center">
+                <span class="text-[9px] text-white/40 uppercase block tracking-wider">Salinidade</span>
+                <span id="ds-salinidade" class="font-bold text-white text-base font-mono block mt-1">1.024 SG</span>
+              </div>
+              <div class="bg-white/5 border border-white/10 rounded-2xl p-3.5 text-center">
+                <span class="text-[9px] text-white/40 uppercase block tracking-wider">Temperatura</span>
+                <span id="ds-temp" class="font-bold text-white text-base font-mono block mt-1">25.5°C</span>
+              </div>
+            </div>
+            
+            <!-- Details FAQ item -->
+            <details class="group liquid-glass rounded-xl p-3 border border-white/5 hover:border-white/15 transition-colors [&_summary::-webkit-details-marker]:hidden">
+              <summary class="flex items-center justify-between cursor-pointer focus:outline-none">
+                <h5 class="font-body font-semibold text-[11px] text-white tracking-wide">Preciso de experiência com biologia?</h5>
+                <span class="text-bioBlue transition-transform duration-300 group-open:rotate-180">
+                  <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" /></svg>
+                </span>
+              </summary>
+              <p class="text-[10px] font-body font-light text-white/50 mt-2 border-t border-white/10 pt-2">
+                Não. O Kit Seguro vai totalmente ciclado e maduro quimicamente no nosso laboratório.
+              </p>
+            </details>
+          </div>
+          <span class="text-[10px] font-mono text-white/35 mt-4">Parâmetros reais oscilando via JavaScript</span>
+        </div>
+      </div>
+
+      <!-- 5. MATRIZ DE ESTADOS INTERATIVOS (States Matrix Audit) -->
+      <div class="mt-16 border-t border-white/10 pt-12">
+        <h3 class="font-heading italic text-3xl text-white mb-6">5. Matriz de Estados de Componentes (Interactive States Matrix)</h3>
+        <p class="text-sm font-body font-light text-white/50 mb-8 max-w-xl">
+          Visualização estática e forçada de cada estado de interação para auditoria visual rápida por parte dos designers.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+          <!-- Default State -->
+          <div class="liquid-glass rounded-2xl p-5 border border-white/5 text-center">
+            <span class="text-[9px] font-mono text-white/40 uppercase block mb-4">Estado Padrão</span>
+            <div class="bg-white text-black font-semibold text-xs rounded-full py-3 px-4 shadow select-none cursor-pointer">
+              Adquirir Kit Seguro
+            </div>
+            <span class="text-[9px] font-mono text-white/30 block mt-4">bg-white | text-black</span>
+          </div>
+
+          <!-- Hover State -->
+          <div class="liquid-glass rounded-2xl p-5 border border-white/5 text-center">
+            <span class="text-[9px] font-mono text-white/40 uppercase block mb-4">Estado Hover (Simulado)</span>
+            <div class="bg-white/90 text-black font-semibold text-xs rounded-full py-3 px-4 shadow scale-102 select-none cursor-pointer border border-white/20">
+              Adquirir Kit Seguro
+            </div>
+            <span class="text-[9px] font-mono text-white/30 block mt-4">bg-white/90 | scale-102</span>
+          </div>
+
+          <!-- Active Click State -->
+          <div class="liquid-glass rounded-2xl p-5 border border-white/5 text-center">
+            <span class="text-[9px] font-mono text-white/40 uppercase block mb-4">Estado Ativo (Clique)</span>
+            <div class="bg-white text-black font-semibold text-xs rounded-full py-3 px-4 shadow scale-95 select-none cursor-pointer">
+              Adquirir Kit Seguro
+            </div>
+            <span class="text-[9px] font-mono text-white/30 block mt-4">bg-white | scale-95</span>
+          </div>
+
+          <!-- Focus State -->
+          <div class="liquid-glass rounded-2xl p-5 border border-white/5 text-center">
+            <span class="text-[9px] font-mono text-white/40 uppercase block mb-4">Estado Focus / Anel</span>
+            <div class="bg-white text-black font-semibold text-xs rounded-full py-3 px-4 shadow ring-2 ring-bioBlue/80 ring-offset-2 ring-offset-[#050508] select-none cursor-pointer">
+              Adquirir Kit Seguro
+            </div>
+            <span class="text-[9px] font-mono text-white/30 block mt-4">ring-2 ring-bioBlue/80</span>
+          </div>
+
+          <!-- Disabled State -->
+          <div class="liquid-glass rounded-2xl p-5 border border-white/5 text-center opacity-40">
+            <span class="text-[9px] font-mono text-white/40 uppercase block mb-4">Estado Desativado</span>
+            <div class="bg-white/50 text-black/60 font-semibold text-xs rounded-full py-3 px-4 shadow pointer-events-none select-none cursor-not-allowed">
+              Adquirir Kit Seguro
+            </div>
+            <span class="text-[9px] font-mono text-white/30 block mt-4">opacity-40 | disabled</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. CATÁLOGO DE ÍCONES (Icon Catalog Specimens) -->
+      <div class="mt-16 border-t border-white/10 pt-12">
+        <h3 class="font-heading italic text-3xl text-white mb-6">6. Biblioteca e Catálogo de Ícones (Icon Catalog)</h3>
+        <p class="text-sm font-body font-light text-white/50 mb-8 max-w-xl">
+          Ícones lineares e duotone consistentes mapeados do Solar Icons set. Clique no ícone para copiar seu identificador.
+        </p>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4">
+          <!-- Icon 1 -->
+          <button onclick="copyToClipboard('solar:aquarium-bold-duotone')" class="group focus:outline-none liquid-glass rounded-2xl p-4 border border-white/5 hover:border-white/20 transition-all duration-300 flex flex-col items-center justify-center">
+            <iconify-icon class="text-bioBlue group-hover:scale-110 transition-transform" height="28" icon="solar:aquarium-bold-duotone" width="28"></iconify-icon>
+            <span class="text-[9px] font-mono text-white/60 mt-3 truncate w-full text-center">aquarium-bold</span>
+          </button>
+          
+          <!-- Icon 2 -->
+          <button onclick="copyToClipboard('solar:bacteria-bold-duotone')" class="group focus:outline-none liquid-glass rounded-2xl p-4 border border-white/5 hover:border-white/20 transition-all duration-300 flex flex-col items-center justify-center">
+            <iconify-icon class="text-bioBlue/80 group-hover:scale-110 transition-transform" height="28" icon="solar:bacteria-bold-duotone" width="28"></iconify-icon>
+            <span class="text-[9px] font-mono text-white/60 mt-3 truncate w-full text-center">bacteria-bold</span>
+          </button>
+
+          <!-- Icon 3 -->
+          <button onclick="copyToClipboard('solar:pulse-bold-duotone')" class="group focus:outline-none liquid-glass rounded-2xl p-4 border border-white/5 hover:border-white/20 transition-all duration-300 flex flex-col items-center justify-center">
+            <iconify-icon class="text-bioBlue/80 group-hover:scale-110 transition-transform" height="28" icon="solar:pulse-bold-duotone" width="28"></iconify-icon>
+            <span class="text-[9px] font-mono text-white/60 mt-3 truncate w-full text-center">pulse-bold</span>
+          </button>
+
+          <!-- Icon 4 -->
+          <button onclick="copyToClipboard('solar:bottle-bold-duotone')" class="group focus:outline-none liquid-glass rounded-2xl p-4 border border-white/5 hover:border-white/20 transition-all duration-300 flex flex-col items-center justify-center">
+            <iconify-icon class="text-bioBlue/80 group-hover:scale-110 transition-transform" height="28" icon="solar:bottle-bold-duotone" width="28"></iconify-icon>
+            <span class="text-[9px] font-mono text-white/60 mt-3 truncate w-full text-center">bottle-bold</span>
+          </button>
+
+          <!-- Icon 5 -->
+          <button onclick="copyToClipboard('solar:dna-bold-duotone')" class="group focus:outline-none liquid-glass rounded-2xl p-4 border border-white/5 hover:border-white/20 transition-all duration-300 flex flex-col items-center justify-center">
+            <iconify-icon class="text-bioBlue/80 group-hover:scale-110 transition-transform" height="28" icon="solar:dna-bold-duotone" width="28"></iconify-icon>
+            <span class="text-[9px] font-mono text-white/60 mt-3 truncate w-full text-center">dna-bold</span>
+          </button>
+
+          <!-- Icon 6 -->
+          <button onclick="copyToClipboard('solar:shield-check-bold-duotone')" class="group focus:outline-none liquid-glass rounded-2xl p-4 border border-white/5 hover:border-white/20 transition-all duration-300 flex flex-col items-center justify-center">
+            <iconify-icon class="text-coral group-hover:scale-110 transition-transform" height="28" icon="solar:shield-check-bold-duotone" width="28"></iconify-icon>
+            <span class="text-[9px] font-mono text-white/60 mt-3 truncate w-full text-center">shield-check</span>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Floating Dynamic Viewport Breakpoint Indicator -->
+  <div class="fixed bottom-4 right-4 z-40 bg-black/60 backdrop-blur-md border border-white/10 rounded-full px-4 py-2 font-mono text-[10px] text-white flex items-center gap-2 shadow-2xl select-none">
+    <span class="inline-block w-2 h-2 rounded-full bg-coral animate-pulse"></span>
+    Viewport: <span id="bp-label" class="text-bioBlue font-bold">LG</span> 
+    (<span id="bp-width">1024</span>px)
+  </div>
+
+  <!-- Toast Notification Copy -->
+  <div id="toast-notify" class="toast-copy fixed bottom-8 left-1/2 z-50 bg-bioBlue text-white font-body font-bold text-xs uppercase tracking-wider px-5 py-3.5 rounded-full border border-white/10 shadow-2xl">
+    Código Copiado com Sucesso! 🔬
+  </div>
+
+  <script>
+    // Copy function
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('toast-notify');
+        if (toast) {
+          toast.classList.add('show');
+          setTimeout(() => {
+            toast.classList.remove('show');
+          }, 2000);
+        }
+      });
+    }
+
+    // Telemetry simulation
+    setInterval(() => {
+      const salNode = document.getElementById('ds-salinidade');
+      const tempNode = document.getElementById('ds-temp');
+      
+      if (salNode && tempNode) {
+        // Subtle changes in parameters
+        const randSal = (1.024 + (Math.random() * 0.0006 - 0.0003)).toFixed(4);
+        const randTemp = (25.5 + (Math.random() * 0.2 - 0.1)).toFixed(1);
+        
+        salNode.innerText = `${randSal} SG`;
+        tempNode.innerText = `${randTemp}°C`;
+      }
+    }, 3000);
+
+    // Magnetic buttons integration
+    const ctaButtons = document.querySelectorAll('.hero-cta');
+    ctaButtons.forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        
+        gsap.to(btn, {
+          x: x * 0.3,
+          y: y * 0.3,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      });
+
+      btn.addEventListener('mouseleave', () => {
+        gsap.to(btn, {
+          x: 0,
+          y: 0,
+          duration: 0.5,
+          ease: 'elastic.out(1, 0.5)'
+        });
+      });
+    });
+
+    // Breakpoint checker
+    function updateBreakpointIndicator() {
+      const label = document.getElementById('bp-label');
+      const widthVal = document.getElementById('bp-width');
+      const width = window.innerWidth;
+      
+      if (widthVal) widthVal.innerText = width;
+      
+      if (label) {
+        if (width < 640) {
+          label.innerText = 'BASE (Mobile)';
+        } else if (width >= 640 && width < 768) {
+          label.innerText = 'SM (Tablet)';
+        } else if (width >= 768 && width < 1024) {
+          label.innerText = 'MD (Small Desktop)';
+        } else if (width >= 1024 && width < 1280) {
+          label.innerText = 'LG (Large Desktop)';
+        } else {
+          label.innerText = 'XL (Ultrawide)';
+        }
+      }
+    }
+    
+    window.addEventListener('resize', updateBreakpointIndicator);
+    window.addEventListener('load', updateBreakpointIndicator);
+  </script>
+</body>
+</html>

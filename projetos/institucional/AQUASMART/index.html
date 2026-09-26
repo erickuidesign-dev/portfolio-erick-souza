@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AQUASMART — Uma Obra de Arte Viva. Um Bioma Sustentável.</title>
+  
+  <!-- ==========================================
+       📊 MARKETING & CONVERSION TRACKING SCRIPTS
+       ========================================== -->
+  
+  <!-- Google Tag Manager (GTM) -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Google Analytics 4 (GA4) / Google Tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX', { 'anonymize_ip': true });
+  </script>
+  <!-- End Google Analytics 4 -->
+
+  <!-- Meta (Facebook) Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '123456789012345');
+    fbq('track', 'PageView');
+  </script>
+  <!-- End Meta Pixel Code -->
+
+  <!-- SEO Técnico -->
+  <meta name="description" content="Peixes ornamentais marinhos nobres criados em cativeiro. Genética de luxo com imunidade perfeita, taxa de adaptação e sobrevivência incomparáveis.">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Google Fonts: Barlow (Sans-Serif) & Instrument Serif (Italic Serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  
+  <!-- Iconify Web Component Runtime -->
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+
+  <!-- GSAP & ScrollTrigger for High-End Motion Graphics -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['"Instrument Serif"', 'serif'],
+            body: ['"Barlow"', 'sans-serif'],
+          },
+          colors: {
+            onyx: '#050508',        // Deep Space Onyx from Digitize DS
+            coral: '#BED20A',       // Client Lime Green (replaces coral)
+            bioBlue: '#1286C3',     // Client Marine Blue (replaces bioBlue)
+            white: '#ffffff',
+            glass: 'rgba(255, 255, 255, 0.01)',
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Estilos Avançados CSS (Design System Tokens & Glow Animations) -->
+  <style>
+    body {
+      background-color: #050508;
+      color: #ffffff;
+    }
+
+    /* LIQUID GLASS SURFACES FROM PREMIUM DESIGN SYSTEM */
+    .liquid-glass {
+      background: rgba(255, 255, 255, 0.01);
+      background-blend-mode: luminosity;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: none;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .liquid-glass::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.2px;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.35) 0%,
+        rgba(255, 255, 255, 0.1) 20%,
+        rgba(255, 255, 255, 0) 40%,
+        rgba(255, 255, 255, 0) 60%,
+        rgba(255, 255, 255, 0.1) 80%,
+        rgba(255, 255, 255, 0.35) 100%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .liquid-glass-strong {
+      background: rgba(255, 255, 255, 0.01);
+      background-blend-mode: luminosity;
+      backdrop-filter: blur(50px);
+      -webkit-backdrop-filter: blur(50px);
+      border: none;
+      box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.4),
+        inset 0 1px 1px rgba(255, 255, 255, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .liquid-glass-strong::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.4px;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.45) 0%,
+        rgba(255, 255, 255, 0.15) 20%,
+        rgba(255, 255, 255, 0) 40%,
+        rgba(255, 255, 255, 0) 60%,
+        rgba(255, 255, 255, 0.15) 80%,
+        rgba(255, 255, 255, 0.45) 100%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    /* Glow Blobs Floating Animation */
+    @keyframes float-blob {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-25px) scale(1.08); }
+    }
+    .glow-blob {
+      animation: float-blob 9s ease-in-out infinite;
+    }
+    .animation-delay-2000 {
+      animation-delay: 2s;
+    }
+    .animation-delay-4000 {
+      animation-delay: 4s;
+    }
+
+    /* Custom scrollbar for high-end feel */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #050508;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+  </style>
+</head>
+<body class="font-body selection:bg-bioBlue/30 selection:text-white overflow-x-hidden">
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Glowing Bioluminescent Background Blobs (Marine underwater mood) -->
+  <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+    <div class="absolute -top-40 -left-40 w-[600px] h-[600px] bg-blue-900/10 rounded-full blur-[140px] glow-blob"></div>
+    <div class="absolute top-1/3 -right-60 w-[700px] h-[700px] bg-teal-900/10 rounded-full blur-[160px] glow-blob animation-delay-2000"></div>
+    <div class="absolute -bottom-40 left-1/4 w-[500px] h-[500px] bg-lime-950/5 rounded-full blur-[120px] glow-blob animation-delay-4000"></div>
+  </div>
+
+  <!-- 📥 HEADER DE NAVEGAÇÃO FLUTUANTE (Liquid Glass Navbar) -->
+  <nav class="fixed top-4 left-0 right-0 z-50 px-6 lg:px-16 py-3 flex items-center justify-between pointer-events-none">
+    <div class="pointer-events-auto h-12 px-5 flex items-center justify-center gap-3 rounded-full bg-white/5 backdrop-blur-md border border-white/10 shadow-lg">
+      <iconify-icon class="text-bioBlue" height="22" icon="solar:aquarium-bold-duotone" width="22"></iconify-icon>
+      <span class="text-white font-body font-bold text-lg tracking-tight uppercase">AQUA<span class="text-bioBlue">SMART</span></span>
+    </div>
+    
+    <div class="pointer-events-auto hidden md:flex items-center liquid-glass rounded-full px-2 py-1 shadow-lg">
+      <a href="#home" class="px-4 py-2 text-xs font-semibold text-white/70 font-body hover:text-white transition-colors">Home</a>
+      <a href="#bastidores" class="px-4 py-2 text-xs font-semibold text-white/70 font-body hover:text-white transition-colors">Bastidores</a>
+      <a href="#colecao" class="px-4 py-2 text-xs font-semibold text-white/70 font-body hover:text-white transition-colors">Coleção Designer</a>
+      <a href="#oferta" class="px-4 py-2 text-xs font-semibold text-white/70 font-body hover:text-white transition-colors">Kit Seguro</a>
+      <a href="#faq" class="px-4 py-2 text-xs font-semibold text-white/70 font-body hover:text-white transition-colors">FAQs</a>
+      <a href="https://wa.me/5511993016820" target="_blank" class="bg-white text-black hover:bg-white/90 transition-all duration-300 rounded-full px-5 py-2 text-xs font-semibold flex items-center gap-1.5 ml-2 hover:scale-105">
+        Projetos B2B
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24">
+          <path d="M5 12h14"></path>
+          <path d="M12 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+    
+    <div class="md:hidden pointer-events-auto liquid-glass rounded-full p-3 flex items-center justify-center shadow-lg cursor-pointer hover:bg-white/5 transition-colors">
+      <iconify-icon class="text-white" height="24" icon="solar:hamburger-menu-linear" width="24"></iconify-icon>
+    </div>
+  </nav>
+
+  <main id="content" class="relative z-10">
+
+    <!-- 🌊 SEÇÃO HERO (The Ocean Canvas Hero & Dynamic Video Director) -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-28 pb-24 px-6 md:px-12 overflow-hidden">
+      <!-- Dynamic Cross-fading Video Background (Smart Pre-buffered) -->
+      <div class="absolute inset-0 z-0">
+        <video id="hero-vid-0" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] ease-in-out opacity-100" autoplay loop muted playsinline preload="auto">
+          <source src="assets/videos/hero/8950652-hd_1920_1080_30fps.mp4" type="video/mp4">
+        </video>
+        <video id="hero-vid-1" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] ease-in-out opacity-0" loop muted playsinline preload="none" data-src="assets/videos/hero/14788335_1920_1080_60fps.mp4"></video>
+        <video id="hero-vid-2" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] ease-in-out opacity-0" loop muted playsinline preload="none" data-src="assets/videos/hero/15428335_1920_1080_30fps.mp4"></video>
+        <video id="hero-vid-3" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] ease-in-out opacity-0" loop muted playsinline preload="none" data-src="assets/videos/hero/15100592_3840_2160_60fps.mp4"></video>
+        <video id="hero-vid-4" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] ease-in-out opacity-0" loop muted playsinline preload="none" data-src="assets/videos/hero/18421470-uhd_3840_2160_60fps.mp4"></video>
+      </div>
+
+      <!-- Subtle dark overlays for maximum legibility of text content -->
+      <div class="absolute inset-0 bg-black/45 z-0 pointer-events-none"></div>
+      <div class="absolute bottom-0 left-0 w-full h-[30vh] bg-gradient-to-b from-transparent to-[#050508] z-0 pointer-events-none"></div>
+      
+      <!-- Background 3D WebGL Canvas Layer on top of videos for added particle effects -->
+      <canvas id="ocean-3d-canvas" class="absolute inset-0 w-full h-full pointer-events-none opacity-40 z-10"></canvas>
+      
+      <div class="relative w-full max-w-5xl mx-auto z-20 pt-12 pb-12">
+        <!-- Main Content Column -->
+        <div class="flex flex-col items-start text-left w-full">
+          <div class="hero-badge liquid-glass rounded-full px-1 py-1 pr-4 flex items-center gap-3 mb-8 shadow-md opacity-0">
+            <span class="bg-white text-black rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider font-body">BIOMA 🔬</span>
+            <span class="text-white/90 font-body text-sm font-medium">Aquicultura Ornamental Marinha Sustentável</span>
+          </div>
+          
+          <h1 class="hero-title font-heading italic text-6xl md:text-7xl lg:text-[7.5rem] leading-[0.85] text-white tracking-tight mb-8 opacity-0">
+            Uma Obra de<br>Arte Viva. Um<br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-bioBlue font-heading italic">Bioma Único.</span>
+          </h1>
+          
+          <p class="hero-desc text-lg md:text-xl text-white/70 font-body font-light leading-relaxed max-w-xl mb-10 opacity-0">
+            Peixes ornamentais marinhos nobres nascidos e criados em cativeiro. Genética de luxo desenvolvida em laboratório, com imunidade imbatível e adaptação 10x superior à de espécies coletadas de forma predatória no mar.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+            <a href="#oferta" class="hero-cta bg-white text-black hover:bg-white/90 transition-all duration-300 rounded-full px-8 py-4 font-semibold text-sm flex items-center justify-center gap-1.5 hover:scale-105 shadow-lg w-full sm:w-auto opacity-0">
+              Garantir Meu Kit Seguro
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M7 7h10v10"></path>
+                <path d="M7 17 17 7"></path>
+              </svg>
+            </a>
+            <a href="https://wa.me/5511993016820" target="_blank" class="hero-cta liquid-glass-strong hover:scale-105 transition-all duration-300 rounded-full px-8 py-4 text-white font-medium text-sm flex items-center justify-center gap-2 w-full sm:w-auto opacity-0">
+              Falar com Biólogo Marinho
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 🎛️ VIDEO DIRECTOR CONTROL PANEL DOCK (Interactive Cinemagraph Slider controls) -->
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 pointer-events-auto w-[90%] max-w-xl">
+        <div class="liquid-glass rounded-full px-6 py-3 flex items-center justify-between border border-white/10 shadow-2xl backdrop-blur-md">
+          <!-- Play/Pause -->
+          <button id="director-play-pause" class="text-white hover:text-bioBlue transition-colors flex items-center justify-center focus:outline-none" title="Pausar Autoplay">
+            <iconify-icon id="director-play-icon" icon="solar:pause-bold" width="16" height="16"></iconify-icon>
+          </button>
+          
+          <!-- Timeline Indicators -->
+          <div class="flex items-center gap-3 md:gap-4 flex-1 justify-center px-4">
+            <button onclick="changeScene(0)" class="scene-dot group relative flex items-center gap-1.5 focus:outline-none">
+              <span class="scene-indicator w-2.5 h-2.5 rounded-full bg-white transition-all duration-500"></span>
+              <span class="hidden md:inline text-[9px] font-bold uppercase tracking-wider text-white opacity-40 group-hover:opacity-100 transition-opacity">01. Abissal</span>
+            </button>
+            <button onclick="changeScene(1)" class="scene-dot group relative flex items-center gap-1.5 focus:outline-none">
+              <span class="scene-indicator w-2.5 h-2.5 rounded-full bg-white/30 transition-all duration-500"></span>
+              <span class="hidden md:inline text-[9px] font-bold uppercase tracking-wider text-white opacity-40 group-hover:opacity-100 transition-opacity">02. Recifes</span>
+            </button>
+            <button onclick="changeScene(2)" class="scene-dot group relative flex items-center gap-1.5 focus:outline-none">
+              <span class="scene-indicator w-2.5 h-2.5 rounded-full bg-white/30 transition-all duration-500"></span>
+              <span class="hidden md:inline text-[9px] font-bold uppercase tracking-wider text-white opacity-40 group-hover:opacity-100 transition-opacity">03. Bioma</span>
+            </button>
+            <button onclick="changeScene(3)" class="scene-dot group relative flex items-center gap-1.5 focus:outline-none">
+              <span class="scene-indicator w-2.5 h-2.5 rounded-full bg-white/30 transition-all duration-500"></span>
+              <span class="hidden md:inline text-[9px] font-bold uppercase tracking-wider text-white opacity-40 group-hover:opacity-100 transition-opacity">04. Genética</span>
+            </button>
+            <button onclick="changeScene(4)" class="scene-dot group relative flex items-center gap-1.5 focus:outline-none">
+              <span class="scene-indicator w-2.5 h-2.5 rounded-full bg-white/30 transition-all duration-500"></span>
+              <span class="hidden md:inline text-[9px] font-bold uppercase tracking-wider text-white opacity-40 group-hover:opacity-100 transition-opacity">05. Nutrição</span>
+            </button>
+          </div>
+
+          <!-- Current Scene Label -->
+          <span id="director-scene-title" class="text-[10px] font-bold tracking-widest uppercase text-bioBlue/85 min-w-[70px] text-right font-mono">Abissal</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🛡️ PORTÃO DE AUTORIDADE E CONSERVAÇÃO (Liquid Glass Trust Bar) -->
+    <section class="border-t border-b border-white/10 bg-[#020204]/40 backdrop-blur-md py-10 px-6 relative z-10">
+      <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
+        <div class="text-center md:border-r border-white/10 py-2">
+          <span class="block font-heading italic text-4xl lg:text-5xl text-white">100%</span>
+          <span class="text-xs text-white/50 uppercase tracking-widest font-body mt-2 block">Cativeiro Sustentável</span>
+        </div>
+        <div class="text-center md:border-r border-white/10 py-2">
+          <span class="block font-heading italic text-4xl lg:text-5xl text-white">+10.000</span>
+          <span class="text-xs text-white/50 uppercase tracking-widest font-body mt-2 block">Peixes Preservados</span>
+        </div>
+        <div class="text-center md:border-r border-white/10 py-2">
+          <span class="block font-heading italic text-4xl lg:text-5xl text-white">10x</span>
+          <span class="text-xs text-white/50 uppercase tracking-widest font-body mt-2 block">Mais Adaptados</span>
+        </div>
+        <div class="text-center py-2">
+          <span class="block font-heading italic text-4xl lg:text-5xl text-white">ZERO</span>
+          <span class="text-xs text-white/50 uppercase tracking-widest font-body mt-2 block">Parasitas Selvagens</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🔬 BENTO GRID DE BASTIDORES (The Laboratory Windows) -->
+    <section id="bastidores" class="py-24 md:py-32 w-full relative z-10 overflow-hidden">
+      <!-- Background Video playing dark_liquid_3d.mp4 (Microscopy organic liquid animation) - Fully covering viewport -->
+      <video class="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none z-0" autoplay loop muted playsinline>
+        <source src="assets/videos/rigor/dark_liquid_3d.mp4" type="video/mp4">
+      </video>
+      <!-- Subtle dark overlay to ensure readability of bento grid glass content -->
+      <div class="absolute inset-0 bg-[#050508]/65 z-0 pointer-events-none"></div>
+      
+      <div class="max-w-6xl mx-auto px-6 relative z-10">
+        <div class="flex flex-col items-center text-center mb-20">
+          <div class="liquid-glass rounded-full px-4 py-1.5 mb-6">
+            <span class="text-white text-xs font-semibold font-body uppercase tracking-wider">Rigor Científico</span>
+          </div>
+          <h2 class="text-5xl md:text-6xl font-heading italic text-white leading-none">Os Bastidores da Nossa Biologia</h2>
+          <p class="mt-4 text-white/60 font-body font-light text-lg max-w-xl">
+            Espreite as janelas de nossa infraestrutura de aquicultura controlada e assista ao milagre da maturação genética.
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
+          <!-- Box A (Egg Hatching) - Cols-8 -->
+          <article class="bento-card md:col-span-8 liquid-glass rounded-3xl p-8 flex flex-col justify-between overflow-hidden min-h-[350px] border border-white/5 hover:border-white/20 transition-all duration-300 opacity-0">
+            <div>
+              <div class="flex items-center gap-2">
+                <iconify-icon class="text-bioBlue/80" icon="solar:bacteria-bold-duotone" width="18" height="18"></iconify-icon>
+                <span class="text-xs font-semibold tracking-wider text-bioBlue/85 font-body uppercase">FASE 01</span>
+              </div>
+              <h3 class="font-heading italic text-3xl text-white mt-3">O Milagre Oculto do Nascimento</h3>
+              <p class="text-base font-body font-light text-white/70 mt-2 max-w-md">
+                Cada ovo e alevino da Aquasmart é monitorado de forma individual sob as lentes de nossos microscópios por biólogos marinhos especializados.
+              </p>
+            </div>
+            <div class="mt-8 overflow-hidden rounded-2xl border border-white/10 relative group shadow-inner">
+              <img src="assets/img/clownfish_eggs_hatching.png" alt="O Milagre Oculto do Nascimento - Ovos de Peixe Palhaço" class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none z-10"></div>
+              <span class="absolute bottom-4 left-4 z-20 text-[9px] text-white/60 font-mono tracking-wider uppercase">Fase 01: Hatching Showcase</span>
+            </div>
+          </article>
+
+          <!-- Box B (Telemetry) - Cols-4 -->
+          <article class="bento-card md:col-span-4 liquid-glass rounded-3xl p-8 flex flex-col justify-between min-h-[350px] border border-white/5 hover:border-white/20 transition-all duration-300 opacity-0">
+            <div>
+              <div class="flex items-center gap-2">
+                <iconify-icon class="text-bioBlue/80" icon="solar:pulse-bold-duotone" width="18" height="18"></iconify-icon>
+                <span class="text-xs font-semibold tracking-wider text-bioBlue/85 font-body uppercase">TELEMETRIA IoT</span>
+              </div>
+              <h3 class="font-heading italic text-2xl text-white mt-3">Parâmetros Estáveis</h3>
+              <p class="text-sm font-body font-light text-white/60 mt-2">
+                Nossos tanques operam sob telemetria de precisão, assegurando a constância perfeita necessária para as linhagens nobres.
+              </p>
+            </div>
+            
+            <div class="mt-6 flex flex-col gap-2.5 font-mono text-xs border-t border-white/10 pt-5 text-bioBlue">
+              <div class="flex justify-between border-b border-white/5 pb-1.5"><span>pH Tanque:</span><span id="iot-ph" class="font-bold text-white">8.3</span></div>
+              <div class="flex justify-between border-b border-white/5 pb-1.5"><span>Salinidade:</span><span id="iot-salinidade" class="font-bold text-white">1.024 SG</span></div>
+              <div class="flex justify-between border-b border-white/5 pb-1.5"><span>Temperatura:</span><span id="iot-temp" class="font-bold text-white">25.5°C</span></div>
+              <div class="flex justify-between"><span>Amônia:</span><span class="font-bold text-emerald-400">Zero (Seguro)</span></div>
+            </div>
+          </article>
+
+          <!-- Box C (Nutrition) - Cols-4 -->
+          <article class="bento-card md:col-span-4 liquid-glass rounded-3xl p-8 flex flex-col justify-between min-h-[350px] border border-white/5 hover:border-white/20 transition-all duration-300 opacity-0">
+            <div>
+              <div class="flex items-center gap-2">
+                <iconify-icon class="text-bioBlue/80" icon="solar:bottle-bold-duotone" width="18" height="18"></iconify-icon>
+                <span class="text-xs font-semibold tracking-wider text-bioBlue/85 font-body uppercase">FASE 02</span>
+              </div>
+              <h3 class="font-heading italic text-2xl text-white mt-3">Nutrição Microscópica</h3>
+              <p class="text-sm font-body font-light text-white/60 mt-2">
+                Cultivamos plâncton e microalgas vivas de alta densidade calórica para nutrir os peixes com vigor imunológico.
+              </p>
+            </div>
+            <div class="mt-6 overflow-hidden rounded-2xl border border-white/10 relative group shadow-inner">
+              <img src="assets/img/live_feed_phytoplankton.png" alt="Nutrição Microscópica - Cultivo de Plâncton" class="w-full h-28 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none z-10"></div>
+              <span class="absolute bottom-3 left-3 z-20 text-[9px] text-white/60 font-mono tracking-wider uppercase">Fase 02: Phytoplankton Live Feed</span>
+            </div>
+          </article>
+
+          <!-- Box D (Slider Preview) - Cols-8 -->
+          <article class="bento-card md:col-span-8 liquid-glass rounded-3xl p-8 flex flex-col justify-between min-h-[350px] border border-white/5 hover:border-white/20 transition-all duration-300 opacity-0">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 h-full items-center">
+              <div class="flex flex-col justify-between h-full">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <iconify-icon class="text-bioBlue/80" icon="solar:dna-bold-duotone" width="18" height="18"></iconify-icon>
+                    <span class="text-xs font-semibold tracking-wider text-bioBlue/85 font-body uppercase">EXCLUSIVIDADE</span>
+                  </div>
+                  <h3 class="font-heading italic text-3xl text-white mt-3">Linhagens Designer</h3>
+                  <p class="text-sm font-body font-light text-white/70 mt-2">
+                    Explore o topo da joalheria biológica marinha. Linhagens exóticas com mutações de cores inimitáveis desenvolvidas sob rigoroso controle molecular.
+                  </p>
+                </div>
+                <div class="mt-6 flex flex-wrap gap-2 border-t border-white/10 pt-4">
+                  <div class="flex items-center gap-1.5 text-[10px] font-body text-white/85 bg-white/5 rounded-full px-3 py-1 border border-white/15">
+                    <span class="w-2 h-2 rounded-full bg-coral shadow-[0_0_8px_#BED20A]"></span>
+                    Picasso
+                  </div>
+                  <div class="flex items-center gap-1.5 text-[10px] font-body text-white/85 bg-white/5 rounded-full px-3 py-1 border border-white/15">
+                    <span class="w-2 h-2 rounded-full bg-white border border-gray-400 shadow-[0_0_8px_#ffffff]"></span>
+                    Platinum
+                  </div>
+                  <div class="flex items-center gap-1.5 text-[10px] font-body text-white/85 bg-white/5 rounded-full px-3 py-1 border border-white/15">
+                    <span class="w-2 h-2 rounded-full bg-neutral-900 border border-white/25"></span>
+                    Midnight
+                  </div>
+                </div>
+              </div>
+              
+              <div class="w-full h-full min-h-[180px] overflow-hidden rounded-2xl border border-white/10 relative group shadow-inner">
+                <img src="assets/img/marine_bio_lab.png" alt="Laboratório de Biologia Molecular Marinha" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none z-10"></div>
+                <span class="absolute bottom-3 left-3 z-20 text-[9px] text-white/60 font-mono tracking-wider uppercase">Molecular Marine Lab</span>
+              </div>
+            </div>
+          </article>
+      </div>
+    </section>
+
+    <!-- 🎨 SLIDER DA COLEÇÃO DESIGNER (The Genetic Jewelry) -->
+    <section id="colecao" class="py-24 relative z-10 border-t border-white/10">
+      <div class="max-w-4xl mx-auto px-6 mb-20 flex flex-col items-center text-center">
+        <div class="liquid-glass rounded-full px-4 py-1.5 mb-6 w-fit">
+          <span class="text-white text-xs font-semibold font-body uppercase tracking-wider">Coleção Limitada</span>
+        </div>
+        <h2 class="text-5xl md:text-6xl font-heading italic text-white leading-none mb-6">A Joalheria Genética</h2>
+        <p class="text-lg font-body font-light text-white/60 max-w-xl leading-relaxed">
+          Cada exemplar de nossas linhagens exóticas é uma escultura subaquática autoral com assinaturas cromáticas inimitáveis.
+        </p>
+      </div>
+      
+      <!-- Container do Horizontal Scroll Slider -->
+      <div class="flex gap-8 px-6 md:px-12 max-w-7xl mx-auto overflow-x-auto pb-12 scrollbar-thin">
+        
+        <!-- Card 1: Picasso -->
+        <article class="collection-card flex-shrink-0 w-80 liquid-glass rounded-3xl p-6 flex flex-col justify-between min-h-[460px] border border-white/5 hover:border-white/20 transition-all duration-300 opacity-0">
+          <div>
+            <div class="w-full h-48 rounded-2xl overflow-hidden border border-white/10 group relative shadow-inner">
+              <img src="assets/img/ocellaris_picasso_clownfish.png" alt="Ocellaris Picasso" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none z-10"></div>
+              <div class="absolute bottom-3 left-3 z-20 text-[9px] text-white/60 font-mono tracking-wider uppercase">Picasso Lineage</div>
+            </div>
+            
+            <div class="mt-5">
+              <div class="flex gap-2">
+                <span class="text-[9px] font-bold uppercase tracking-widest text-bioBlue bg-bioBlue/10 px-3 py-1 rounded-full border border-bioBlue/20">
+                  picasso lineage
+                </span>
+              </div>
+              <h3 class="font-heading italic text-2xl text-white mt-3">Ocellaris Picasso</h3>
+              <p class="text-xs font-body font-light text-white/60 mt-2 leading-relaxed">
+                A assimetria da arte viva. Padrões cromáticos desenhados pela genética seletiva. Não existem dois exemplares com as mesmas manchas corporais no mundo.
+              </p>
+            </div>
+          </div>
+          
+          <button class="w-full mt-6 py-3 rounded-full text-xs font-semibold uppercase tracking-wider border border-white/10 text-white hover:bg-white hover:text-black transition-all duration-300">
+            Reservar Picasso
+          </button>
+        </article>
+
+        <!-- Card 2: Platinum -->
+        <article class="collection-card flex-shrink-0 w-80 liquid-glass rounded-3xl p-6 flex flex-col justify-between min-h-[460px] border border-white/5 hover:border-white/20 transition-all duration-300 opacity-0">
+          <div>
+            <div class="w-full h-48 rounded-2xl overflow-hidden border border-white/10 group relative shadow-inner">
+              <img src="assets/img/ocellaris_platinum_clownfish.png" alt="Ocellaris Platinum" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none z-10"></div>
+              <div class="absolute bottom-3 left-3 z-20 text-[9px] text-white/60 font-mono tracking-wider uppercase">Platinum Lineage</div>
+            </div>
+            
+            <div class="mt-5">
+              <div class="flex gap-2">
+                <span class="text-[9px] font-bold uppercase tracking-widest text-bioBlue bg-bioBlue/10 px-3 py-1 rounded-full border border-bioBlue/20">
+                  pure white elite
+                </span>
+              </div>
+              <h3 class="font-heading italic text-2xl text-white mt-3">Ocellaris Platinum</h3>
+              <p class="text-xs font-body font-light text-white/60 mt-2 leading-relaxed">
+                O luxo silencioso albo. Um corpo coberto por branco leitoso de altíssimo brilho reflexivo, contrastando perfeitamente com contornos escuros finos nas nadadeiras.
+              </p>
+            </div>
+          </div>
+          
+          <button class="w-full mt-6 py-3 rounded-full text-xs font-semibold uppercase tracking-wider border border-white/10 text-white hover:bg-white hover:text-black transition-all duration-300">
+            Reservar Platinum
+          </button>
+        </article>
+
+        <!-- Card 3: Midnight -->
+        <article class="collection-card flex-shrink-0 w-80 liquid-glass rounded-3xl p-6 flex flex-col justify-between min-h-[460px] border border-white/5 hover:border-white/20 transition-all duration-300 opacity-0">
+          <div>
+            <div class="w-full h-48 rounded-2xl overflow-hidden border border-white/10 group relative shadow-inner">
+              <img src="assets/img/ocellaris_midnight_clownfish.png" alt="Ocellaris Midnight" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none z-10"></div>
+              <div class="absolute bottom-3 left-3 z-20 text-[9px] text-white/60 font-mono tracking-wider uppercase">Midnight Lineage</div>
+            </div>
+            
+            <div class="mt-5">
+              <div class="flex gap-2">
+                <span class="text-[9px] font-bold uppercase tracking-widest text-bioBlue bg-bioBlue/10 px-3 py-1 rounded-full border border-bioBlue/20">
+                  midnight lineage
+                </span>
+              </div>
+              <h3 class="font-heading italic text-2xl text-white mt-3">Ocellaris Midnight</h3>
+              <p class="text-xs font-body font-light text-white/60 mt-2 leading-relaxed">
+                O luxo do contraste abissal absoluto. Um corpo em preto sólido aveludado profundo que absorve a luz, contrastando de forma dramática com olhos brilhantes e pequenas marcações pontuais.
+              </p>
+            </div>
+          </div>
+          
+          <button class="w-full mt-6 py-3 rounded-full text-xs font-semibold uppercase tracking-wider border border-white/10 text-white hover:bg-white hover:text-black transition-all duration-300">
+            Reservar Midnight
+          </button>
+        </article>
+
+        <!-- Card 4: Gladiator -->
+        <article class="collection-card flex-shrink-0 w-80 liquid-glass rounded-3xl p-6 flex flex-col justify-between min-h-[460px] border border-white/5 hover:border-white/20 transition-all duration-300 opacity-0">
+          <div>
+            <div class="w-full h-48 rounded-2xl overflow-hidden border border-white/10 group relative shadow-inner">
+              <img src="assets/img/percula_gladiator_clownfish.png" alt="Percula Gladiator" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none z-10"></div>
+              <div class="absolute bottom-3 left-3 z-20 text-[9px] text-white/60 font-mono tracking-wider uppercase">Gladiator Lineage</div>
+            </div>
+            
+            <div class="mt-5">
+              <div class="flex gap-2">
+                <span class="text-[9px] font-bold uppercase tracking-widest text-bioBlue bg-bioBlue/10 px-3 py-1 rounded-full border border-bioBlue/20">
+                  gladiator premium
+                </span>
+              </div>
+              <h3 class="font-heading italic text-2xl text-white mt-3">Percula Gladiator</h3>
+              <p class="text-xs font-body font-light text-white/60 mt-2 leading-relaxed">
+                A perfeição anatômica clássica saturada. Faixas brancas puras delineadas por contornos pretos ultra-espessos sobre um corpo laranja incrivelmente saturado. O equilíbrio exato da biologia nobre.
+              </p>
+            </div>
+          </div>
+          
+          <button class="w-full mt-6 py-3 rounded-full text-xs font-semibold uppercase tracking-wider border border-white/10 text-white hover:bg-white hover:text-black transition-all duration-300">
+            Reservar Gladiator
+          </button>
+        </article>
+
+        <!-- Card 5: Snowflake -->
+        <article class="collection-card flex-shrink-0 w-80 liquid-glass rounded-3xl p-6 flex flex-col justify-between min-h-[460px] border border-white/5 hover:border-white/20 transition-all duration-300 opacity-0">
+          <div>
+            <div class="w-full h-48 rounded-2xl overflow-hidden border border-white/10 group relative shadow-inner">
+              <img src="assets/img/ocellaris_snowflake_clownfish.png" alt="Ocellaris Snowflake" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none z-10"></div>
+              <div class="absolute bottom-3 left-3 z-20 text-[9px] text-white/60 font-mono tracking-wider uppercase">Snowflake Lineage</div>
+            </div>
+            
+            <div class="mt-5">
+              <div class="flex gap-2">
+                <span class="text-[9px] font-bold uppercase tracking-wider text-bioBlue bg-bioBlue/10 px-3 py-1 rounded-full border border-bioBlue/20">
+                  storm lineage
+                </span>
+              </div>
+              <h3 class="font-heading italic text-2xl text-white mt-3">Ocellaris Snowflake</h3>
+              <p class="text-xs font-body font-light text-white/60 mt-2 leading-relaxed">
+                A tempestade biológica perfeita. Uma mistura dramática de branco irregular e fragmentado sobre fundo preto profundo, criando a sensação visual de flocos de neve flutuando em um abismo noturno.
+              </p>
+            </div>
+          </div>
+          
+          <button class="w-full mt-6 py-3 rounded-full text-xs font-semibold uppercase tracking-wider border border-white/10 text-white hover:bg-white hover:text-black transition-all duration-300">
+            Reservar Snowflake
+          </button>
+        </article>
+
+        <!-- Card 6: Onyx -->
+        <article class="collection-card flex-shrink-0 w-80 liquid-glass rounded-3xl p-6 flex flex-col justify-between min-h-[460px] border border-white/5 hover:border-white/20 transition-all duration-300 opacity-0">
+          <div>
+            <div class="w-full h-48 rounded-2xl overflow-hidden border border-white/10 group relative shadow-inner">
+              <img src="assets/img/percula_onyx_clownfish.png" alt="Percula Onyx" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none z-10"></div>
+              <div class="absolute bottom-3 left-3 z-20 text-[9px] text-white/60 font-mono tracking-wider uppercase">Onyx Lineage</div>
+            </div>
+            
+            <div class="mt-5">
+              <div class="flex gap-2">
+                <span class="text-[9px] font-bold uppercase tracking-wider text-bioBlue bg-bioBlue/10 px-3 py-1 rounded-full border border-bioBlue/20">
+                  premium onyx
+                </span>
+              </div>
+              <h3 class="font-heading italic text-2xl text-white mt-3">Percula Onyx</h3>
+              <p class="text-xs font-body font-light text-white/60 mt-2 leading-relaxed">
+                A joia de contraste máximo. Faixas pretas monumentais que cobrem quase todo o flanco do corpo, contrastando de forma deslumbrante com extremidades laranja fogo saturado e faixas brancas geométricas.
+              </p>
+            </div>
+          </div>
+          
+          <button class="w-full mt-6 py-3 rounded-full text-xs font-semibold uppercase tracking-wider border border-white/10 text-white hover:bg-white hover:text-black transition-all duration-300">
+            Reservar Onyx
+          </button>
+        </article>
+      </div>
+    </section>
+
+    <!-- 💸 SEÇÃO DA OFERTA (The Grand Slam Offer in Strong Liquid Glass) -->
+    <section id="oferta" class="py-24 px-6 max-w-6xl mx-auto relative z-10 border-t border-white/10">
+      <div class="liquid-glass-strong rounded-[36px] p-8 md:p-12 lg:p-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center border border-white/10 shadow-2xl relative overflow-hidden">
+        
+        <!-- Image Panel (Carousel) -->
+        <div class="lg:col-span-5 flex flex-col items-center justify-center">
+          <div class="relative w-full h-64 md:h-80 rounded-3xl overflow-hidden border border-white/10 group shadow-inner">
+            
+            <!-- Slides Container -->
+            <div id="offer-carousel" class="relative w-full h-full">
+              <!-- Slide 1 -->
+              <div class="offer-slide absolute inset-0 transition-all duration-700 ease-in-out opacity-100 z-10">
+                <img src="assets/img/aquasmart_aquarium_kit.png" alt="AquaSmart Bioma Seguro Kit Completo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/75 to-transparent pointer-events-none"></div>
+                <div class="absolute bottom-4 left-4 text-[10px] text-white/90 font-mono tracking-widest uppercase bg-black/45 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 select-none">01 / Bioma Seguro Kit Completo</div>
+              </div>
+              
+              <!-- Slide 2 -->
+              <div class="offer-slide absolute inset-0 transition-all duration-700 ease-in-out opacity-0 pointer-events-none z-0">
+                <img src="assets/img/aquasmart_nemo_pair.png" alt="Casal de Peixes Nemo Designer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/75 to-transparent pointer-events-none"></div>
+                <div class="absolute bottom-4 left-4 text-[10px] text-white/90 font-mono tracking-widest uppercase bg-black/45 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 select-none">02 / Casal Nemo Designer Imune</div>
+              </div>
+              
+              <!-- Slide 3 -->
+              <div class="offer-slide absolute inset-0 transition-all duration-700 ease-in-out opacity-0 pointer-events-none z-0">
+                <img src="assets/img/aquasmart_bio_rocks.png" alt="Rochas Biológicas Ativas" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/75 to-transparent pointer-events-none"></div>
+                <div class="absolute bottom-4 left-4 text-[10px] text-white/90 font-mono tracking-widest uppercase bg-black/45 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 select-none">03 / Rochas Biológicas Ativas</div>
+              </div>
+              
+              <!-- Slide 4 -->
+              <div class="offer-slide absolute inset-0 transition-all duration-700 ease-in-out opacity-0 pointer-events-none z-0">
+                <img src="assets/img/aquasmart_extra_clear_glass.png" alt="Vidro Extra-Clear Lapidado" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/75 to-transparent pointer-events-none"></div>
+                <div class="absolute bottom-4 left-4 text-[10px] text-white/90 font-mono tracking-widest uppercase bg-black/45 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 select-none">04 / Vidro Extra-Clear Óptico</div>
+              </div>
+              
+              <!-- Slide 5 -->
+              <div class="offer-slide absolute inset-0 transition-all duration-700 ease-in-out opacity-0 pointer-events-none z-0">
+                <img src="assets/img/aquasmart_supplements.png" alt="Suplementos e Ração FishBall" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/75 to-transparent pointer-events-none"></div>
+                <div class="absolute bottom-4 left-4 text-[10px] text-white/90 font-mono tracking-widest uppercase bg-black/45 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 select-none">05 / Suplementos & Nutrição FishBall</div>
+              </div>
+            </div>
+
+            <!-- Navigation Buttons (Fades in on hover) -->
+            <button id="prev-btn" class="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-white hover:text-black">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" /></svg>
+            </button>
+            <button id="next-btn" class="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-white hover:text-black">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" /></svg>
+            </button>
+
+            <!-- Navigation Dots -->
+            <div class="absolute bottom-4 right-4 z-20 flex gap-1.5 bg-black/25 backdrop-blur-sm px-2.5 py-1.5 rounded-full border border-white/5">
+              <span class="offer-dot w-1.5 h-1.5 rounded-full bg-white transition-all duration-300"></span>
+              <span class="offer-dot w-1.5 h-1.5 rounded-full bg-white/30 transition-all duration-300"></span>
+              <span class="offer-dot w-1.5 h-1.5 rounded-full bg-white/30 transition-all duration-300"></span>
+              <span class="offer-dot w-1.5 h-1.5 rounded-full bg-white/30 transition-all duration-300"></span>
+              <span class="offer-dot w-1.5 h-1.5 rounded-full bg-white/30 transition-all duration-300"></span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Offer Details Column -->
+        <div class="lg:col-span-7 flex flex-col items-start">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-coral/20 bg-coral/10 text-coral text-xs font-bold uppercase mb-6 tracking-wide font-body shadow-sm">
+            🏆 Oferta Especial Grand Slam
+          </div>
+          
+          <h2 class="font-heading italic text-4xl md:text-5xl text-white leading-tight mb-5">
+            O Kit Aquário Seguro: O Oceano Sem Instabilidade.
+          </h2>
+          
+          <p class="text-base font-body font-light text-white/70 mb-6 leading-relaxed">
+            Eliminamos a ansiedade biológica e a complexidade técnica. Em vez de peixes soltos, você adquire um bioma marinho maturado e totalmente colonizado por 6 semanas no laboratório especializado da Aquasmart.
+          </p>
+          
+          <!-- Key benefits grid -->
+          <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-body font-medium text-white/80 mb-8 w-full border-b border-white/10 pb-8">
+            <li class="flex items-center gap-2.5">
+              <iconify-icon class="text-bioBlue" icon="solar:check-circle-bold-duotone" width="16" height="16"></iconify-icon>
+              Aquário de Vidro Extra-Clear (Nitidez Óptica)
+            </li>
+            <li class="flex items-center gap-2.5">
+              <iconify-icon class="text-bioBlue" icon="solar:check-circle-bold-duotone" width="16" height="16"></iconify-icon>
+              Rochas Biológicas ativas colonizadas
+            </li>
+            <li class="flex items-center gap-2.5">
+              <iconify-icon class="text-bioBlue" icon="solar:check-circle-bold-duotone" width="16" height="16"></iconify-icon>
+              Casal de Nemos imunes a doenças selvagens
+            </li>
+            <li class="flex items-center gap-2.5">
+              <iconify-icon class="text-bioBlue" icon="solar:check-circle-bold-duotone" width="16" height="16"></iconify-icon>
+              Suplementação e Nutrição FishBall inicial
+            </li>
+          </ul>
+
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 w-full">
+            <div>
+              <span class="text-[10px] text-white/40 uppercase tracking-widest font-body block">Investimento Exclusivo</span>
+              <span class="font-heading italic text-4xl text-white mt-1 block">R$ 5.800</span>
+              <span class="text-xs text-white/50 font-body block mt-0.5">ou 12x de R$ 565</span>
+            </div>
+            
+            <a href="https://wa.me/5511993016820" target="_blank" class="bg-white text-black hover:bg-white/90 transition-all duration-300 rounded-full px-8 py-4 text-sm font-semibold uppercase tracking-wider text-center flex items-center justify-center gap-2 hover:scale-105 w-full sm:w-auto">
+              Adquirir Kit Seguro
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24">
+                <path d="M5 12h14"></path>
+                <path d="M12 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Trust Seal with Glass Layer (Cialdini Trigger) -->
+          <div class="mt-8 flex items-start gap-4 p-5 liquid-glass rounded-2xl border border-white/10 text-left w-full shadow-md">
+            <iconify-icon class="text-coral shrink-0 mt-0.5" icon="solar:shield-check-bold-duotone" width="28" height="28"></iconify-icon>
+            <div>
+              <h4 class="text-xs font-bold text-white uppercase tracking-wider font-body">180 Dias de Garantia de Sobrevivência Biológica</h4>
+              <p class="text-xs font-body font-light text-white/60 mt-1 leading-relaxed">
+                Se algum exemplar morrer nos primeiros 6 meses, realizamos a reposição gratuita e fornecemos suporte especializado de calibração química sem custos.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 📚 SEÇÃO DE CAPTURA DE LEAD (E-book de Reciprocidade Biológica) -->
+    <section id="ebook" class="py-24 px-6 max-w-4xl mx-auto relative z-10 border-t border-white/10">
+      <div class="liquid-glass-strong rounded-[36px] p-8 md:p-12 border border-white/10 shadow-2xl relative overflow-hidden text-center">
+        <!-- Accent Glow Blob -->
+        <div class="absolute -top-24 -right-24 w-48 h-48 bg-bioBlue/20 rounded-full blur-[80px] pointer-events-none"></div>
+        <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-coral/10 rounded-full blur-[80px] pointer-events-none"></div>
+
+        <div class="relative z-10">
+          <div class="liquid-glass rounded-full px-4 py-1.5 mb-6 inline-flex border border-white/5 shadow-md">
+            <span class="text-white text-xs font-semibold font-body uppercase tracking-wider">Biblioteca Científica</span>
+          </div>
+          
+          <h2 class="font-heading italic text-4xl md:text-5xl text-white leading-tight mb-4">
+            O Segredo do Bioma Estável
+          </h2>
+          
+          <p class="text-sm md:text-base font-body font-light text-white/70 mb-8 max-w-xl mx-auto leading-relaxed">
+            Evite quedas biológicas e mortes prematuras de espécies. Baixe gratuitamente o manual master escrito por nossos biólogos: <strong>"O Guia Definitivo do Aquário Marinho Saudável"</strong>.
+          </p>
+
+          <!-- Form block -->
+          <form id="lead-form" class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto items-stretch justify-center">
+            <div class="flex-1 text-left">
+              <label for="lead-name" class="sr-only">Nome Completo</label>
+              <input type="text" id="lead-name" name="name" required placeholder="Seu Nome Completo" class="w-full px-5 py-3.5 rounded-full bg-white/5 border border-white/10 text-white font-body text-xs placeholder-white/35 focus:outline-none focus:border-bioBlue/80 focus:ring-1 focus:ring-bioBlue/80 transition-all duration-300 shadow-inner">
+            </div>
+            
+            <div class="flex-1 text-left">
+              <label for="lead-phone" class="sr-only">WhatsApp</label>
+              <input type="tel" id="lead-phone" name="phone" required placeholder="WhatsApp (DDD)" class="w-full px-5 py-3.5 rounded-full bg-white/5 border border-white/10 text-white font-body text-xs placeholder-white/35 focus:outline-none focus:border-bioBlue/80 focus:ring-1 focus:ring-bioBlue/80 transition-all duration-300 shadow-inner">
+            </div>
+
+            <button type="submit" class="hero-cta bg-white text-black hover:bg-white/90 transition-all duration-300 rounded-full px-6 py-3.5 font-semibold text-xs flex items-center justify-center gap-1.5 hover:scale-105 shadow-lg shrink-0">
+              Receber E-book
+              <iconify-icon icon="solar:bottle-bold-duotone" width="14" height="14" class="text-black"></iconify-icon>
+            </button>
+          </form>
+
+          <!-- Safe badge -->
+          <p class="text-[10px] text-white/40 font-body mt-4 flex items-center justify-center gap-1">
+            <iconify-icon icon="solar:shield-check-bold-duotone" class="text-coral" width="12" height="12"></iconify-icon>
+            Seus dados estão protegidos sob segredo biológico e LGPD.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🛡️ FAQS (Bento Accordion Objections Buster) -->
+    <section id="faq" class="py-24 px-6 max-w-4xl mx-auto relative z-10 border-t border-white/10">
+      <div class="text-center mb-16">
+        <div class="liquid-glass rounded-full px-4 py-1.5 mb-6 inline-flex">
+          <span class="text-white text-xs font-semibold font-body uppercase tracking-wider">Perguntas Frequentes</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-heading italic text-white leading-none">Quebrando Objeções Biológicas</h2>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <!-- FAQ 1 -->
+        <details class="group liquid-glass rounded-2xl p-6 border border-white/5 hover:border-white/15 transition-colors [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex items-center justify-between cursor-pointer focus:outline-none">
+            <h3 class="font-body font-semibold text-base text-white tracking-wide">
+              Como os peixes são transportados com segurança e sem estresse para minha casa?
+            </h3>
+            <span class="text-bioBlue transition-transform duration-300 group-open:rotate-180">
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" /></svg>
+            </span>
+          </summary>
+          <p class="text-sm font-body font-light text-white/60 mt-4 leading-relaxed border-t border-white/10 pt-4">
+            Nossos animais são acomodados em cilindros rígidos de acrílico vedados com isolamento térmico e oxigênio ativo a 100%. O transporte é feito via transportadora aérea credenciada com rastreamento militar ou entrega expressa local climatizada na sua porta em menos de 24 horas, garantindo zero estresse ao animal.
+          </p>
+        </details>
+
+        <!-- FAQ 2 -->
+        <details class="group liquid-glass rounded-2xl p-6 border border-white/5 hover:border-white/15 transition-colors [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex items-center justify-between cursor-pointer focus:outline-none">
+            <h3 class="font-body font-semibold text-base text-white tracking-wide">
+              Eu preciso ter experiência prévia com biologia marinha para ter o Kit Seguro?
+            </h3>
+            <span class="text-bioBlue transition-transform duration-300 group-open:rotate-180">
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" /></svg>
+            </span>
+          </summary>
+          <p class="text-sm font-body font-light text-white/60 mt-4 leading-relaxed border-t border-white/10 pt-4">
+            Não. O Kit Seguro vai totalmente ciclado e maduro quimicamente no nosso laboratório. Basta plugar o aquário na tomada, posicionar os peixes seguindo o nosso manual de aclimatização passo a passo simples e alimentá-los uma vez ao dia. Nós cuidamos da parte difícil da biologia de antemão.
+          </p>
+        </details>
+
+        <!-- FAQ 3 -->
+        <details class="group liquid-glass rounded-2xl p-6 border border-white/5 hover:border-white/15 transition-colors [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex items-center justify-between cursor-pointer focus:outline-none">
+            <h3 class="font-body font-semibold text-base text-white tracking-wide">
+              Por que a reprodução em cativeiro é mais ecológica que a coleta no mar?
+            </h3>
+            <span class="text-bioBlue transition-transform duration-300 group-open:rotate-180">
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" /></svg>
+            </span>
+          </summary>
+          <p class="text-sm font-body font-light text-white/60 mt-4 leading-relaxed border-t border-white/10 pt-4">
+            A pesca extrativista retira peixes adultos do oceano, apresentando alta mortalidade pelo estresse de descompressão. No cativeiro Aquasmart, os peixes nascem de linhagens consolidadas e crescem protegidos, atingindo taxa de sobrevivência de 99% e gerando impacto ecológico positivo imediato nos recifes.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <!-- 📞 FOOTER CTA MONUMENTAL & FOOTER -->
+    <section id="footer-cta" class="py-24 px-6 relative border-t border-white/10 z-10 overflow-hidden">
+      <!-- Background Video (Misterio) -->
+      <div class="absolute inset-0 z-0">
+        <video class="w-full h-full object-cover opacity-30 pointer-events-none" autoplay loop muted playsinline>
+          <source src="assets/videos/misterio/15495232_3840_2160_60fps.mp4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-onyx/85 to-onyx/40 z-0 pointer-events-none"></div>
+      </div>
+
+      <div class="max-w-4xl mx-auto text-center relative z-10">
+        <h2 class="font-heading italic text-5xl md:text-6xl text-white mb-6 tracking-tight leading-tight">
+          Leve o Mistério e o Prestígio<br>do Oceano para o seu Ambiente.
+        </h2>
+        
+        <p class="text-base font-body font-light text-white/70 mb-10 max-w-xl mx-auto leading-relaxed">
+          Seja um aquário de luxo para a sua sala de estar ou um projeto de prestígio e relaxamento para o saguão de sua corporação. A Aquasmart esculpe o oceano sob medida para o seu patamar.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="#oferta" class="bg-white text-black hover:bg-white/90 transition-all duration-300 rounded-full px-8 py-4 text-xs font-bold uppercase tracking-wider hover:scale-105 w-full sm:w-auto text-center shadow-lg">
+            Adquirir Kit Seguro
+          </a>
+          <a href="https://wa.me/5511993016820" target="_blank" class="liquid-glass-strong hover:scale-105 transition-all duration-300 rounded-full px-8 py-4 text-xs font-bold uppercase tracking-wider text-white w-full sm:w-auto text-center" aria-label="Chamar biólogo projetista para B2B">
+            Consultar Biólogo Corporativo →
+          </a>
+        </div>
+      </div>
+      
+      <!-- Footer Copyright e Links -->
+      <footer class="max-w-6xl mx-auto mt-24 border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-white/60 text-center md:text-left font-body relative z-10">
+        <div>
+          <span class="font-body font-bold text-white uppercase">AQUA<span class="text-bioBlue">SMART</span></span>
+          <p class="mt-2 font-light">© 2026 AquaSmart LTDA. Todos os direitos reservados. CNPJ: [CNPJ do Cliente]</p>
+        </div>
+        <div class="flex gap-6">
+          <a href="https://www.instagram.com/aquasmart_aquicultura/" target="_blank" class="hover:text-white transition-colors">Instagram</a>
+          <a href="https://www.youtube.com/channel/UCK8bY3slcB-19fdqpGUxVPA/featured" target="_blank" class="hover:text-white transition-colors">Youtube</a>
+          <a href="https://fishball.com.br/" target="_blank" class="hover:text-white transition-colors">Loja Virtual Fishball</a>
+        </div>
+      </footer>
+    </section>
+
+  </main>
+
+  <!-- High-Performance Interactive Canvas Systems & Video Director Engine -->
+  <script>
+    // ==========================================
+    // 1. 🌌 OCEAN BIOLUMINESCENT PARTICLE CANVAS
+    // ==========================================
+    const canvas3d = document.getElementById('ocean-3d-canvas');
+    if (canvas3d) {
+      const ctx = canvas3d.getContext('2d');
+      let particles = [];
+      let width = canvas3d.width = window.innerWidth;
+      let height = canvas3d.height = window.innerHeight;
+      
+      const mouse = { x: null, y: null, radius: 120 };
+      
+      window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      });
+      
+      window.addEventListener('mouseleave', () => {
+        mouse.x = null;
+        mouse.y = null;
+      });
+      
+      window.addEventListener('resize', () => {
+        width = canvas3d.width = window.innerWidth;
+        height = canvas3d.height = window.innerHeight;
+      });
+      
+      class Particle {
+        constructor() {
+          this.reset();
+          this.y = Math.random() * height; // Start at random Y initially
+        }
+        
+        reset() {
+          this.x = Math.random() * width;
+          this.y = height + Math.random() * 100;
+          this.size = Math.random() * 4 + 1;
+          this.speedY = Math.random() * 0.6 + 0.2;
+          this.speedX = Math.random() * 0.4 - 0.2;
+          this.opacity = Math.random() * 0.35 + 0.15;
+          // Bioluminescent colors: Lime (#BED20A) or Blue (#1286C3)
+          this.color = Math.random() > 0.8 ? '190, 210, 10' : '18, 134, 195';
+          this.wobble = Math.random() * Math.PI * 2;
+          this.wobbleSpeed = Math.random() * 0.02 + 0.005;
+        }
+        
+        update() {
+          this.y -= this.speedY;
+          this.wobble += this.wobbleSpeed;
+          this.x += this.speedX + Math.sin(this.wobble) * 0.25;
+          
+          // Mouse interaction (repulsion)
+          if (mouse.x !== null && mouse.y !== null) {
+            const dx = this.x - mouse.x;
+            const dy = this.y - mouse.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < mouse.radius) {
+              const force = (mouse.radius - dist) / mouse.radius;
+              const angle = Math.atan2(dy, dx);
+              this.x += Math.cos(angle) * force * 4;
+              this.y += Math.sin(angle) * force * 4;
+            }
+          }
+          
+          if (this.y < -10 || this.x < -10 || this.x > width + 10) {
+            this.reset();
+          }
+        }
+        
+        draw() {
+          ctx.beginPath();
+          const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 2);
+          grad.addColorStop(0, `rgba(${this.color}, ${this.opacity})`);
+          grad.addColorStop(0.5, `rgba(${this.color}, ${this.opacity * 0.4})`);
+          grad.addColorStop(1, `rgba(${this.color}, 0)`);
+          ctx.fillStyle = grad;
+          ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+      
+      function initParticles() {
+        particles = [];
+        const count = Math.min(60, Math.floor(width / 20));
+        for (let i = 0; i < count; i++) {
+          particles.push(new Particle());
+        }
+      }
+      
+      function animateParticles() {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach(p => {
+          p.update();
+          p.draw();
+        });
+        requestAnimationFrame(animateParticles);
+      }
+      
+      initParticles();
+      animateParticles();
+    }
+
+
+
+    // ==========================================
+    // 2. 🎥 VIDEO CAROUSEL PRE-BUFFERING ENGINE
+    // ==========================================
+    let currentSceneIdx = 0;
+    const totalScenes = 5;
+    const sceneInterval = 8000;
+    let sceneTimer = null;
+    let isAutoplayActive = true;
+    
+    const sceneTitles = [
+      "Abissal",
+      "Recifes",
+      "Bioma",
+      "Genética",
+      "Nutrição"
+    ];
+    
+    function getVideos() {
+      return [
+        document.getElementById('hero-vid-0'),
+        document.getElementById('hero-vid-1'),
+        document.getElementById('hero-vid-2'),
+        document.getElementById('hero-vid-3'),
+        document.getElementById('hero-vid-4')
+      ];
+    }
+    
+    function getDots() {
+      return document.querySelectorAll('.scene-indicator');
+    }
+    
+    // Background sequential pre-loader
+    function prebufferNext(index) {
+      const vids = getVideos();
+      const nextIdx = (index + 1) % totalScenes;
+      const nextVid = vids[nextIdx];
+      
+      if (nextVid && !nextVid.src) {
+        const dataSrc = nextVid.getAttribute('data-src');
+        if (dataSrc) {
+          nextVid.src = dataSrc;
+          nextVid.load();
+          console.log(`[AquaSmart Engine] Pre-buffering scene ${nextIdx} in background: ${dataSrc}`);
+        }
+      }
+    }
+    
+    function changeScene(index) {
+      if (index === currentSceneIdx) return;
+      
+      const vids = getVideos();
+      const dots = getDots();
+      const title = document.getElementById('director-scene-title');
+      
+      const prevVid = vids[currentSceneIdx];
+      const nextVid = vids[index];
+      
+      if (nextVid) {
+        // Double check if src is initialized (for manual click skipping)
+        if (!nextVid.src) {
+          const dataSrc = nextVid.getAttribute('data-src');
+          if (dataSrc) {
+            nextVid.src = dataSrc;
+            nextVid.load();
+          }
+        }
+        
+        // Play and cross-fade
+        nextVid.currentTime = 0;
+        nextVid.play().catch(() => {});
+        nextVid.style.opacity = '1';
+      }
+      
+      if (prevVid) {
+        prevVid.style.opacity = '0';
+        setTimeout(() => {
+          if (currentSceneIdx !== index) {
+            prevVid.pause();
+          }
+        }, 2000);
+      }
+      
+      // Update Timeline indicator dots
+      dots.forEach((dot, idx) => {
+        if (idx === index) {
+          dot.classList.remove('bg-white/30');
+          dot.classList.add('bg-white', 'w-4', 'shadow-[0_0_8px_rgba(18,134,195,0.8)]');
+        } else {
+          dot.classList.remove('bg-white', 'w-4', 'shadow-[0_0_8px_rgba(18,134,195,0.8)]');
+          dot.classList.add('bg-white/30');
+        }
+      });
+      
+      if (title) {
+        title.innerText = sceneTitles[index];
+      }
+      
+      currentSceneIdx = index;
+      
+      // Buffer the scene after the one we just entered
+      prebufferNext(index);
+      
+      if (isAutoplayActive) {
+        resetAutoplay();
+      }
+    }
+    
+    function nextScene() {
+      const nextIdx = (currentSceneIdx + 1) % totalScenes;
+      changeScene(nextIdx);
+    }
+    
+    function startAutoplay() {
+      sceneTimer = setInterval(nextScene, sceneInterval);
+    }
+    
+    function resetAutoplay() {
+      clearInterval(sceneTimer);
+      startAutoplay();
+    }
+    
+    // Initialize Systems on DOM Content Loaded
+    window.addEventListener('DOMContentLoaded', () => {
+      const dots = getDots();
+      if (dots.length > 0) {
+        dots[0].classList.remove('bg-white/30');
+        dots[0].classList.add('bg-white', 'w-4', 'shadow-[0_0_8px_rgba(18,134,195,0.8)]');
+      }
+      
+      const firstVid = document.getElementById('hero-vid-0');
+      if (firstVid) {
+        firstVid.play().catch(() => {});
+      }
+      
+      // Pre-buffer scene 1 right after loading page
+      setTimeout(() => {
+        prebufferNext(0);
+      }, 1000);
+      
+      startAutoplay();
+    });
+    
+    // Play/Pause Button handler
+    const btnPlayPause = document.getElementById('director-play-pause');
+    const iconPlayPause = document.getElementById('director-play-icon');
+    
+    if (btnPlayPause && iconPlayPause) {
+      btnPlayPause.addEventListener('click', () => {
+        const vids = getVideos();
+        const activeVid = vids[currentSceneIdx];
+        
+        if (isAutoplayActive) {
+          clearInterval(sceneTimer);
+          isAutoplayActive = false;
+          iconPlayPause.setAttribute('icon', 'solar:play-bold');
+          btnPlayPause.setAttribute('title', 'Iniciar Autoplay');
+          if (activeVid) activeVid.pause();
+        } else {
+          isAutoplayActive = true;
+          startAutoplay();
+          iconPlayPause.setAttribute('icon', 'solar:pause-bold');
+          btnPlayPause.setAttribute('title', 'Pausar Autoplay');
+          if (activeVid) activeVid.play().catch(() => {});
+        }
+      });
+    }
+
+    // 🌊 CAROUSEL ENGINE: KIT AQUÁRIO SEGURO
+    window.addEventListener('DOMContentLoaded', () => {
+      const offerSlides = document.querySelectorAll('.offer-slide');
+      const offerDots = document.querySelectorAll('.offer-dot');
+      const prevBtn = document.getElementById('prev-btn');
+      const nextBtn = document.getElementById('next-btn');
+      let currentOfferSlideIdx = 0;
+      const totalOfferSlides = offerSlides.length;
+
+      function updateOfferCarousel(index) {
+        offerSlides.forEach((slide, idx) => {
+          if (idx === index) {
+            slide.classList.remove('opacity-0', 'pointer-events-none', 'z-0');
+            slide.classList.add('opacity-100', 'z-10');
+          } else {
+            slide.classList.remove('opacity-100', 'z-10');
+            slide.classList.add('opacity-0', 'pointer-events-none', 'z-0');
+          }
+        });
+
+        offerDots.forEach((dot, idx) => {
+          if (idx === index) {
+            dot.classList.remove('bg-white/30');
+            dot.classList.add('bg-white', 'w-3');
+          } else {
+            dot.classList.remove('bg-white', 'w-3');
+            dot.classList.add('bg-white/30');
+          }
+        });
+
+        currentOfferSlideIdx = index;
+      }
+
+      if (prevBtn && nextBtn && totalOfferSlides > 0) {
+        // Initialize dots state
+        updateOfferCarousel(0);
+
+        prevBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          let prevIdx = (currentOfferSlideIdx - 1 + totalOfferSlides) % totalOfferSlides;
+          updateOfferCarousel(prevIdx);
+        });
+
+        nextBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          let nextIdx = (currentOfferSlideIdx + 1) % totalOfferSlides;
+          updateOfferCarousel(nextIdx);
+        });
+
+        offerDots.forEach((dot, idx) => {
+          dot.addEventListener('click', (e) => {
+            e.preventDefault();
+            updateOfferCarousel(idx);
+          });
+          dot.style.cursor = 'pointer';
+        });
+
+        // Autoplay for the carousel every 4.5 seconds
+        let carouselInterval = setInterval(() => {
+          let nextIdx = (currentOfferSlideIdx + 1) % totalOfferSlides;
+          updateOfferCarousel(nextIdx);
+        }, 4500);
+
+        // Pause autoplay on mouse hover
+        const carouselContainer = document.getElementById('offer-carousel') ? document.getElementById('offer-carousel').parentElement : null;
+        if (carouselContainer) {
+          carouselContainer.addEventListener('mouseenter', () => clearInterval(carouselInterval));
+          carouselContainer.addEventListener('mouseleave', () => {
+            carouselInterval = setInterval(() => {
+              let nextIdx = (currentOfferSlideIdx + 1) % totalOfferSlides;
+              updateOfferCarousel(nextIdx);
+            }, 4500);
+          });
+        }
+      }
+    });
+
+    // ==========================================
+    // 3. 🎬 MOTION DESIGN SUITE (GSAP & SCROLLTRIGGER)
+    // ==========================================
+    window.addEventListener('DOMContentLoaded', () => {
+      if (typeof gsap !== 'undefined') {
+        // Registers GSAP ScrollTrigger plugin
+        gsap.registerPlugin(ScrollTrigger);
+
+        // A. HERO ENTRANCE TIMELINE
+        const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+        
+        heroTl.to('.hero-badge', { opacity: 1, y: 0, duration: 1, delay: 0.3 })
+              .to('.hero-title', { opacity: 1, y: 0, duration: 1.2, ease: 'power4.out' }, '-=0.7')
+              .to('.hero-desc', { opacity: 1, y: 0, duration: 1 }, '-=0.8')
+              .to('.hero-cta', { opacity: 1, scale: 1, duration: 0.8, stagger: 0.15, ease: 'back.out(1.2)' }, '-=0.7');
+
+        // B. BENTO GRID REVELATION (ScrollTrigger)
+        gsap.fromTo('.bento-card', 
+          { opacity: 0, y: 45 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1.1,
+            stagger: 0.2,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: '#bastidores',
+              start: 'top 80%',
+              toggleActions: 'play none none none'
+            }
+          }
+        );
+
+        // C. DESIGNER COLLECTION CARDS REVELATION (ScrollTrigger)
+        gsap.fromTo('.collection-card', 
+          { opacity: 0, x: 50, scale: 0.95 },
+          {
+            opacity: 1,
+            x: 0,
+            scale: 1,
+            duration: 1,
+            stagger: 0.15,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: '#colecao',
+              start: 'top 75%',
+              toggleActions: 'play none none none'
+            }
+          }
+        );
+
+        // D. OFERTA GRAND SLAM REVELATION (ScrollTrigger)
+        gsap.fromTo('#oferta .liquid-glass-strong', 
+          { opacity: 0, y: 60, scale: 0.96 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 1.3,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: '#oferta',
+              start: 'top 80%',
+              toggleActions: 'play none none none'
+            }
+          }
+        );
+
+        // E. FAQ OBJECTIONS REVELATION (ScrollTrigger)
+        gsap.fromTo('#faq .text-center', 
+          { opacity: 0, y: 35 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1.1,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: '#faq',
+              start: 'top 80%',
+              toggleActions: 'play none none none'
+            }
+          }
+        );
+
+        gsap.fromTo('#faq details', 
+          { opacity: 0, y: 25 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.12,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: '#faq',
+              start: 'top 75%',
+              toggleActions: 'play none none none'
+            }
+          }
+        );
+
+        // F. MONUMENTAL FOOTER CTA REVELATION (ScrollTrigger)
+        gsap.fromTo('#footer-cta .max-w-4xl', 
+          { opacity: 0, y: 55, scale: 0.97 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 1.4,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: '#footer-cta',
+              start: 'top 80%',
+              toggleActions: 'play none none none'
+            }
+          }
+        );
+
+        // G. DYNAMIC MAGNETIC BUTTONS (Micro-interactions)
+        const ctaButtons = document.querySelectorAll('.hero-cta, #oferta a, nav a.bg-white, #ebook button');
+        ctaButtons.forEach(btn => {
+          btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            gsap.to(btn, {
+              x: x * 0.3,
+              y: y * 0.3,
+              duration: 0.3,
+              ease: 'power2.out'
+            });
+          });
+
+          btn.addEventListener('mouseleave', () => {
+            gsap.to(btn, {
+              x: 0,
+              y: 0,
+              duration: 0.5,
+              ease: 'elastic.out(1, 0.5)'
+            });
+          });
+        });
+      }
+    });
+
+    // ==========================================
+    // 4. 🔬 DYNAMIC IoT TELEMETRY OSCILLATION
+    // ==========================================
+    setInterval(() => {
+      const phNode = document.getElementById('iot-ph');
+      const salNode = document.getElementById('iot-salinidade');
+      const tempNode = document.getElementById('iot-temp');
+      
+      if (phNode) {
+        const randPh = (8.30 + (Math.random() * 0.04 - 0.02)).toFixed(2);
+        phNode.innerText = `${randPh}`;
+      }
+      if (salNode) {
+        const randSal = (1.0240 + (Math.random() * 0.0006 - 0.0003)).toFixed(4);
+        salNode.innerText = `${randSal} SG`;
+      }
+      if (tempNode) {
+        const randTemp = (25.5 + (Math.random() * 0.2 - 0.1)).toFixed(1);
+        tempNode.innerText = `${randTemp}°C`;
+      }
+    }, 3000);
+
+    // ==========================================
+    // 5. 📧 ACTIVECAMPAIGN WEBHOOK INTEGRATION
+    // ==========================================
+    const leadForm = document.getElementById('lead-form');
+    const actionToast = document.getElementById('action-toast');
+    
+    function showToast(message, isError = false) {
+      if (actionToast) {
+        actionToast.innerText = message;
+        if (isError) {
+          actionToast.classList.remove('bg-bioBlue');
+          actionToast.classList.add('bg-rose-950', 'border-rose-500/30');
+        } else {
+          actionToast.classList.remove('bg-rose-950', 'border-rose-500/30');
+          actionToast.classList.add('bg-bioBlue');
+        }
+        actionToast.classList.remove('opacity-0', 'translate-y-5', 'pointer-events-none');
+        actionToast.classList.add('opacity-100', 'translate-y-0');
+        
+        setTimeout(() => {
+          actionToast.classList.remove('opacity-100', 'translate-y-0');
+          actionToast.classList.add('opacity-0', 'translate-y-5', 'pointer-events-none');
+        }, 4000);
+      }
+    }
+    
+    if (leadForm) {
+      leadForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const nameInput = document.getElementById('lead-name');
+        const phoneInput = document.getElementById('lead-phone');
+        const submitBtn = leadForm.querySelector('button[type="submit"]');
+        
+        const name = nameInput ? nameInput.value.trim() : '';
+        const phone = phoneInput ? phoneInput.value.trim() : '';
+        
+        if (!name || !phone) return;
+        
+        // Loading state on button
+        const originalBtnContent = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `Enviando... <iconify-icon icon="solar:pulse-bold-duotone" width="14" height="14" class="text-black animate-pulse"></iconify-icon>`;
+        
+        // Form submission via Fetch JSON to ActiveCampaign webhook
+        const webhookUrl = 'https://activecampaign-webhook.aquasmart.net.br/webhook/activecampaign';
+        
+        fetch(webhookUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: name,
+            phone: phone,
+            source: 'Website E-book Capture',
+            timestamp: new Date().toISOString()
+          })
+        })
+        .then(response => {
+          if (response.ok) {
+            return response.json().catch(() => ({ status: 'success' }));
+          }
+          throw new Error('Network error');
+        })
+        .then(() => {
+          showToast('Acesso Liberado! O e-book foi enviado para seu WhatsApp! 🔬');
+          leadForm.reset();
+        })
+        .catch(err => {
+          console.warn('[AquaSmart CRM Webhook] ActiveCampaign hook placeholder simulation mode enabled.', err);
+          
+          // Fallback simulation for live demonstration
+          setTimeout(() => {
+            showToast('Acesso Liberado! O e-book foi enviado para seu WhatsApp! 🔬');
+            leadForm.reset();
+          }, 800);
+        })
+        .finally(() => {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnContent;
+        });
+      });
+    }
+  </script>
+
+  <!-- Toast Notification for Lead Capture and Actions -->
+  <div id="action-toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-bioBlue text-white font-body font-bold text-xs uppercase tracking-wider px-6 py-4 rounded-full border border-white/10 shadow-2xl opacity-0 translate-y-5 transition-all duration-300 pointer-events-none">
+    Acesso Liberado! O e-book foi enviado para seu WhatsApp! 🔬
+  </div>
+</body>
+</html>

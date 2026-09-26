@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>Axisform® — Living Design System</title>
+  <script src="assets/resource_3fa48481346f.js"></script>
+  <script src="assets/lucide_c4b77f01cf98.js"></script>
+  <script src="assets/gsap_4f0dc5b47bd1.js"></script>
+  <script src="assets/ScrollTrigger_270ba6162bc6.js"></script>
+
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="assets/css2_b5b4345b30d8.css" rel="stylesheet"/>
+  
+  <style>
+    :root {
+      --bg: #060706;
+      --panel: #10110f;
+      --panel-2: #151713;
+      --cream: #f3f0e8;
+      --muted: rgba(243, 240, 232, 0.58);
+      --soft: rgba(243, 240, 232, 0.12);
+      --line: rgba(243, 240, 232, 0.10);
+      --orange: #ff5a1f;
+      --orange-soft: rgba(255, 90, 31, 0.22);
+      --ease: cubic-bezier(.22, 1, .36, 1);
+    }
+    * { box-sizing: border-box; }
+    html {
+      background: var(--bg);
+      color-scheme: dark;
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 70% 10%, rgba(255, 90, 31, 0.12), transparent 34rem),
+        radial-gradient(circle at 15% 45%, rgba(243, 240, 232, 0.05), transparent 26rem),
+        radial-gradient(circle at 80% 60%, rgba(255, 90, 31, 0.08), transparent 30rem),
+        radial-gradient(circle at 20% 85%, rgba(243, 240, 232, 0.03), transparent 28rem),
+        var(--bg);
+      color: var(--cream);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; }
+    ::selection { background: var(--cream); color: var(--bg); }
+    
+    .noise {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: .18;
+      background-image: radial-gradient(rgba(255,255,255,.18) 1px, transparent 1px);
+      background-size: 4px 4px;
+      mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+    }
+    .grid-veil {
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      opacity: .13;
+      background-image:
+        linear-gradient(rgba(243,240,232,.09) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(243,240,232,.09) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: linear-gradient(to bottom, transparent, #000 14%, #000 84%, transparent);
+    }
+    .page-rail {
+      position: fixed;
+      left: 22px;
+      bottom: 28px;
+      z-index: 45;
+      pointer-events: none;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      color: rgba(243, 240, 232, .38);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .wordmark {
+      letter-spacing: -0.08em;
+      white-space: nowrap;
+    }
+    .nav-link {
+      position: relative;
+      text-transform: uppercase;
+      letter-spacing: .02em;
+    }
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -8px;
+      height: 1px;
+      transform: scaleX(0);
+      transform-origin: right;
+      background: currentColor;
+      transition: transform .45s var(--ease);
+    }
+    .nav-link:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: .7rem;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(243,240,232,.54);
+    }
+    .section-label::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--orange);
+      box-shadow: 0 0 20px rgba(255,90,31,.5);
+    }
+    .reveal,
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(32px);
+      will-change: opacity, transform;
+    }
+    .hero-card {
+      transform-origin: center;
+      will-change: transform;
+      border: 1px solid var(--line);
+      box-shadow: 0 40px 120px rgba(0,0,0,.62);
+    }
+    .glass {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.035);
+      backdrop-filter: blur(18px);
+    }
+    .magnetic-button {
+      transition: transform .45s var(--ease), background .45s var(--ease), border-color .45s var(--ease);
+    }
+    .magnetic-button:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,90,31,.45);
+      background: rgba(255,90,31,.13);
+    }
+    .service-card,
+    .pricing-card,
+    .note-card,
+    .archive-card {
+      transition: transform .55s var(--ease), border-color .55s var(--ease), background .55s var(--ease);
+      will-change: transform, opacity;
+    }
+    .service-card:hover,
+    .pricing-card:hover,
+    .note-card:hover,
+    .archive-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255,90,31,.34);
+      background: rgba(255,255,255,.06);
+    }
+    .note-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0;
+      background: linear-gradient(135deg, rgba(243, 240, 232, 0.14), transparent 42%);
+      transition: opacity 500ms var(--ease);
+    }
+    .note-card:hover::after { opacity: 1; }
+    .masked-number {
+      color: transparent;
+      background-image: var(--number-image);
+      background-position: 50% 50%;
+      background-size: 118%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      filter: saturate(.82) brightness(1.06);
+      will-change: transform, background-position;
+    }
+    .strip-image,
+    .archive-card img {
+      will-change: transform;
+      transform: scale(1.08);
+    }
+    .archive-card:hover img {
+      transform: scale(1.16);
+      opacity: 0.95;
+    }
+    .parallax-image {
+      position: absolute;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #101310;
+      opacity: .68;
+      will-change: transform;
+    }
+    .parallax-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(.72) brightness(.72);
+      transform: scale(1.14);
+      will-change: transform;
+    }
+    .timeline-bar {
+      transform: scaleX(0);
+      transform-origin: left center;
+      background: linear-gradient(90deg, var(--orange), rgba(243,240,232,.82));
+    }
+    .footer-input {
+      transition: border-color .35s var(--ease), background .35s var(--ease);
+    }
+    .footer-input:hover {
+      border-color: rgba(255,90,31,.35);
+      background: rgba(255,255,255,.06);
+    }
+    /* Brand preloader */
+    .ax-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+      will-change: transform;
+    }
+    .ax-loader__inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 26px;
+      padding: 0 24px;
+    }
+    .ax-loader__brand {
+      display: inline-flex;
+      align-items: center;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -0.08em;
+      color: var(--cream);
+      font-size: clamp(2.8rem, 9vw, 6.4rem);
+      opacity: 0;
+      transform: translateY(18px);
+      filter: blur(10px);
+      will-change: transform, opacity, filter;
+    }
+    .ax-loader__brand sup {
+      font-size: 0.26em;
+      font-weight: 800;
+      letter-spacing: 0;
+      align-self: flex-start;
+      margin-left: 0.02em;
+    }
+    .ax-dot {
+      width: 0.14em;
+      height: 0.14em;
+      margin-left: 0.14em;
+      border-radius: 999px;
+      background: var(--orange);
+      box-shadow: 0 0 28px rgba(255, 90, 31, 0.65);
+    }
+    .ax-loader__track {
+      width: min(300px, 64vw);
+      height: 2px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(243, 240, 232, 0.12);
+    }
+    .ax-loader__bar {
+      width: 100%;
+      height: 100%;
+      transform: scaleX(0);
+      transform-origin: left center;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--orange), rgba(243, 240, 232, 0.82));
+    }
+    .ax-loader__meta {
+      display: flex;
+      justify-content: space-between;
+      width: min(300px, 64vw);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(243, 240, 232, 0.45);
+      opacity: 0;
+    }
+    @media (max-width: 767px) {
+      .wordmark { letter-spacing: -0.065em; }
+      .page-rail { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .001ms !important;
+      }
+      .ax-loader { display: none; }
+      .reveal,
+      [data-reveal],
+      .timeline-bar {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+
+    /* Scroll fixes for offline viewing */
+    html, body {
+      overflow: auto !important;
+      overflow-x: hidden !important;
+      height: auto !important;
+      min-height: 100% !important;
+      scroll-behavior: auto !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+    
+    body, .wrapper, main, #__next, #app, .page, .content {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
+    }
+    
+    .loader, .preloader, .loading, [class*="loader"], [class*="preloader"] {
+      display: none !important;
+      opacity: 0 !important;
+    }
+    
+    .word-inner, .char, .line, [data-aos], [data-scroll],
+    .hero-text span, .hero-fade, [class*="hero"] span {
+      opacity: 1 !important;
+      transform: none !important;
+      visibility: visible !important;
+    }
+    
+    .translate-y-full, .translate-x-full, .-translate-y-full, .-translate-x-full,
+    .translate-y-1\/2, .-translate-y-1\/2, .translate-y-\[100\%\], .translate-y-\[110\%\] {
+      transform: none !important;
+    }
+    
+    .opacity-0, [class*="opacity-0"] {
+      opacity: 1 !important;
+    }
+    
+    .scale-0, .scale-50, .scale-75 {
+      transform: none !important;
+    }
+    
+    html.lenis, html.lenis-smooth, 
+    body.lenis, body.lenis-smooth,
+    .lenis-wrapper, .lenis-content,
+    [data-lenis-prevent], [data-scroll-container] {
+      overflow: visible !important;
+      height: auto !important;
+    }
+    
+    body.flex.items-center,
+    body.flex.justify-center {
+      align-items: flex-start !important;
+      min-height: 100vh;
+      height: auto !important;
+    }
+    
+    main, #__next, #__nuxt, #app, .main-content {
+      overflow: visible !important;
+      height: auto !important;
+    }
+
+    html.w-mod-js:not(.w-mod-ix3) :is(.menu-drop-down, .nav-link-parent, .socials-row, .textsmall.greytext.may, .images-services, .servicedescription, .bnw-grid-1, .linesanimation, .project-link, .loadanimationopacity, .loadanimationlines, .loadanimationscale),
+    .loadanimationopacity, .loadanimationlines, .loadanimationscale, .linesanimation, .project-link, .images-services, .servicedescription, .bnw-grid-1,
+    [class*="gsap_split_line"], [class*="gsap_split_line-mask"] {
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    /* Living Design System Custom Styles */
+    .ds-section {
+      position: relative;
+      border-top: 1px solid var(--line);
+      padding: 8rem 0;
+    }
+    .ds-nav-header {
+      background: rgba(6, 7, 6, 0.85);
+      backdrop-filter: blur(24px) saturate(120%);
+      border-bottom: 1px solid var(--line);
+      transition: background 0.3s ease;
+    }
+    .ds-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: rgba(243, 240, 232, 0.6);
+    }
+    .ds-grid-pattern {
+      position: relative;
+      border: 1px dashed rgba(243, 240, 232, 0.2);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.01);
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-family: monospace;
+      color: rgba(243, 240, 232, 0.4);
+    }
+    .ds-motion-box {
+      width: 100px;
+      height: 100px;
+      border-radius: 20px;
+      background: var(--panel-2);
+      border: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      transition: all 0.5s var(--ease);
+    }
+    .ds-motion-trigger:hover .ds-motion-box-lift {
+      transform: translateY(-8px);
+      border-color: rgba(255,90,31,.34);
+      background: rgba(255,255,255,.06);
+    }
+    .ds-motion-trigger:hover .ds-motion-box-magnetic {
+      transform: translateY(-2px);
+      border-color: rgba(255,90,31,.45);
+      background: rgba(255,90,31,.13);
+    }
+    .ds-motion-trigger:hover .ds-motion-img-scale {
+      transform: scale(1.16);
+      opacity: 0.95;
+    }
+  </style>
+</head>
+<body>
+  <div aria-hidden="true" class="noise"></div>
+  <div aria-hidden="true" class="grid-veil"></div>
+  <div aria-hidden="true" class="page-rail">Design System Spec</div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="ds-nav-header fixed inset-x-0 top-0 z-50 flex items-center justify-between px-5 py-5 md:px-8 lg:px-12">
+    <a class="text-lg font-semibold tracking-[-0.055em] text-[#f3f0e8] md:text-xl" href="#hero">
+      Axisform<span class="text-[#ff5a1f]">®</span> System
+    </a>
+    <nav class="hidden items-center gap-8 text-xs font-bold text-[#f3f0e8]/82 md:flex">
+      <a class="nav-link" href="#hero"><span class="mr-3 inline-block h-1.5 w-1.5 rounded-full bg-[#ff5a1f] align-middle"></span>Hero</a>
+      <a class="nav-link" href="#typography">Typography</a>
+      <a class="nav-link" href="#colors">Colors & Surfaces</a>
+      <a class="nav-link" href="#components">Components</a>
+      <a class="nav-link" href="#layout">Layout</a>
+      <a class="nav-link" href="#motion">Motion</a>
+      <a class="nav-link" href="#icons">Icons</a>
+    </nav>
+    <div class="flex items-center gap-4">
+      <span class="ds-badge border-[#ff5a1f]/30 text-[#ff5a1f]">v1.0 Living Spec</span>
+      <button aria-label="Open menu" class="glass flex h-10 w-10 items-center justify-center rounded-full md:hidden">
+        <i class="h-4 w-4" data-lucide="menu"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="relative z-10 overflow-hidden">
+    
+    <!-- 0) HERO (EXACT CLONE, TEXT ADAPTED) -->
+    <section id="hero" class="hero-section relative flex min-h-screen items-center overflow-hidden px-5 py-24 md:px-8 lg:px-12">
+      <div class="hero-copy relative z-20 max-w-[360px]">
+        <p class="section-label mb-10">Axisform® System</p>
+        <p class="max-w-[340px] text-[21px] font-medium leading-[1.45] tracking-[-0.045em] text-[#f3f0e8]/76 md:text-[25px]">
+          <span class="text-[#f3f0e8]">Axisform® Design System</span> defines the visual tokens, typography scales, layout components, and motion guidelines that build our public interface.
+        </p>
+        <a class="magnetic-button mt-14 inline-flex items-center gap-5 rounded-full border border-[#f3f0e8]/12 px-5 py-3 text-xs font-bold uppercase tracking-[0.18em] text-[#f3f0e8]" href="#typography">
+          Explore System
+          <span class="flex h-8 w-8 items-center justify-center rounded-full bg-[#ff5a1f] text-[#060706]">
+            <i class="h-4 w-4" data-lucide="arrow-right"></i>
+          </span>
+        </a>
+      </div>
+      <div class="hero-stack absolute left-1/2 top-[48%] z-10 h-[430px] w-[310px] -translate-x-1/2 -translate-y-1/2 md:h-[560px] md:w-[430px] lg:h-[620px] lg:w-[480px]">
+        <div class="hero-card absolute inset-0 -translate-x-20 translate-y-12 -rotate-[17deg] rounded-[20px] bg-[#151713]">
+          <div class="h-full w-full rounded-[20px] bg-gradient-to-br from-[#ff5a1f]/30 via-transparent to-black"></div>
+        </div>
+        <div class="hero-card absolute inset-0 translate-x-20 translate-y-10 rotate-[13deg] rounded-[20px] bg-[#d8cbb5]">
+          <div class="absolute right-10 top-24 font-serif text-[110px] text-[#ff5a1f]/80">A</div>
+          <div class="absolute bottom-12 left-10 h-32 w-32 rounded-full border border-black/20"></div>
+        </div>
+        <div class="hero-card absolute inset-0 translate-x-32 translate-y-20 rotate-[18deg] rounded-[20px] bg-[#080808]">
+          <div class="h-full w-full rounded-[20px] bg-[linear-gradient(135deg,rgba(255,255,255,.16),transparent_45%)]"></div>
+        </div>
+        <div class="hero-card absolute inset-0 rotate-[4deg] overflow-hidden rounded-[20px] bg-[#201714]">
+          <img alt="Editorial studio portrait" class="h-full w-full object-cover saturate-125" src="assets/1be70dfc-949c-405c-893d-614e40_4237afb184c9.png"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/48 via-transparent to-orange-950/10"></div>
+          <div class="absolute inset-0 bg-[#ff5a1f]/10 mix-blend-overlay"></div>
+        </div>
+        <button aria-label="Explore" class="hero-cta absolute right-[-22px] top-1/2 z-20 flex h-16 w-16 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/80 text-white shadow-2xl backdrop-blur transition duration-300 hover:scale-110 hover:bg-[#ff5a1f]">
+          <i class="h-7 w-7" data-lucide="arrow-right"></i>
+        </button>
+      </div>
+      <h1 class="hero-wordmark wordmark pointer-events-none absolute -bottom-5 left-2 z-0 select-none text-[23vw] font-black leading-none text-[#e8e0d4] md:-bottom-12 lg:left-6 lg:text-[20vw]">
+        Axisform
+      </h1>
+      <div class="hero-meta glass absolute bottom-10 right-5 z-20 hidden w-[270px] rounded-[24px] p-6 md:right-8 lg:block">
+        <div class="mb-8 text-2xl text-[#ff5a1f]">✳</div>
+        <p class="text-[19px] leading-[1.25] tracking-[-0.04em]">
+          Design system guidelines and interactive pattern specs.
+        </p>
+        <div class="mt-10 flex items-center justify-between text-[10px] font-bold uppercase tracking-[0.14em] text-[#f3f0e8]/45">
+          <span>Design System</span>
+          <span class="h-1 w-1 rounded-full bg-[#ff5a1f]"></span>
+          <span>Version 1.0.0</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1) TYPOGRAPHY -->
+    <section id="typography" class="ds-section px-5 md:px-8 lg:px-12">
+      <div class="mx-auto max-w-6xl">
+        <div class="grid gap-12 md:grid-cols-12 mb-16">
+          <div class="md:col-span-4">
+            <p class="section-label">01 / Typography</p>
+            <p class="mt-6 text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">
+              A precise grid of size, weight, and tracking variables used to build a coherent visual hierarchy.
+            </p>
+          </div>
+        </div>
+        
+        <div class="divide-y divide-[#f3f0e8]/10 border-t border-b border-[#f3f0e8]/10">
+          
+          <!-- Heading 1 -->
+          <div class="grid grid-cols-12 gap-4 py-10 items-baseline">
+            <div class="col-span-12 md:col-span-3 text-xs font-bold uppercase tracking-[0.14em] text-[#f3f0e8]/44 mb-4 md:mb-0">Heading 1 (Display)</div>
+            <div class="col-span-12 md:col-span-6">
+              <h2 class="archive-title text-[54px] font-black leading-[0.9] tracking-[-0.08em] text-[#f3f0e8] md:text-[86px] lg:text-[112px]">Signals Collected</h2>
+            </div>
+            <div class="col-span-12 md:col-span-3 text-left md:text-right text-xs font-medium text-[#f3f0e8]/50">112px / 100.8px</div>
+          </div>
+
+          <!-- Heading 2 -->
+          <div class="grid grid-cols-12 gap-4 py-10 items-baseline">
+            <div class="col-span-12 md:col-span-3 text-xs font-bold uppercase tracking-[0.14em] text-[#f3f0e8]/44 mb-4 md:mb-0">Heading 2</div>
+            <div class="col-span-12 md:col-span-6">
+              <h2 class="text-6xl font-semibold leading-[0.95] tracking-[-0.08em] md:text-8xl">Operating Loop</h2>
+            </div>
+            <div class="col-span-12 md:col-span-3 text-left md:text-right text-xs font-medium text-[#f3f0e8]/50">96px / 91.2px</div>
+          </div>
+
+          <!-- Heading 3 -->
+          <div class="grid grid-cols-12 gap-4 py-10 items-baseline">
+            <div class="col-span-12 md:col-span-3 text-xs font-bold uppercase tracking-[0.14em] text-[#f3f0e8]/44 mb-4 md:mb-0">Heading 3</div>
+            <div class="col-span-12 md:col-span-6">
+              <h3 class="text-4xl font-semibold tracking-[-0.07em] md:text-6xl">Signal Sprint</h3>
+            </div>
+            <div class="col-span-12 md:col-span-3 text-left md:text-right text-xs font-medium text-[#f3f0e8]/50">60px / 57px</div>
+          </div>
+
+          <!-- Heading 4 -->
+          <div class="grid grid-cols-12 gap-4 py-10 items-baseline">
+            <div class="col-span-12 md:col-span-3 text-xs font-bold uppercase tracking-[0.14em] text-[#f3f0e8]/44 mb-4 md:mb-0">Heading 4</div>
+            <div class="col-span-12 md:col-span-6">
+              <h3 class="text-2xl font-semibold tracking-[-0.05em]">Signal Audit</h3>
+            </div>
+            <div class="col-span-12 md:col-span-3 text-left md:text-right text-xs font-medium text-[#f3f0e8]/50">24px / 32px</div>
+          </div>
+
+          <!-- Bold L -->
+          <div class="grid grid-cols-12 gap-4 py-8 items-baseline">
+            <div class="col-span-12 md:col-span-3 text-xs font-bold uppercase tracking-[0.14em] text-[#f3f0e8]/44 mb-4 md:mb-0">Bold L</div>
+            <div class="col-span-12 md:col-span-6">
+              <p class="text-[19px] font-semibold leading-[1.25] tracking-[-0.04em] text-[#f3f0e8]">Branding, digital experiences, and motion systems.</p>
+            </div>
+            <div class="col-span-12 md:col-span-3 text-left md:text-right text-xs font-medium text-[#f3f0e8]/50">19px / 23.75px</div>
+          </div>
+
+          <!-- Bold M -->
+          <div class="grid grid-cols-12 gap-4 py-8 items-baseline">
+            <div class="col-span-12 md:col-span-3 text-xs font-bold uppercase tracking-[0.14em] text-[#f3f0e8]/44 mb-4 md:mb-0">Bold M</div>
+            <div class="col-span-12 md:col-span-6">
+              <span class="text-xs font-bold uppercase tracking-[0.18em]">View Selected Work</span>
+            </div>
+            <div class="col-span-12 md:col-span-3 text-left md:text-right text-xs font-medium text-[#f3f0e8]/50">12px / 16px</div>
+          </div>
+
+          <!-- Bold S -->
+          <div class="grid grid-cols-12 gap-4 py-8 items-baseline">
+            <div class="col-span-12 md:col-span-3 text-xs font-bold uppercase tracking-[0.14em] text-[#f3f0e8]/44 mb-4 md:mb-0">Bold S</div>
+            <div class="col-span-12 md:col-span-6">
+              <span class="text-[10px] font-bold uppercase tracking-[0.14em]">Launch OS / Axisform</span>
+            </div>
+            <div class="col-span-12 md:col-span-3 text-left md:text-right text-xs font-medium text-[#f3f0e8]/50">10px / 14px</div>
+          </div>
+
+          <!-- Paragraph -->
+          <div class="grid grid-cols-12 gap-4 py-8 items-baseline">
+            <div class="col-span-12 md:col-span-3 text-xs font-bold uppercase tracking-[0.14em] text-[#f3f0e8]/44 mb-4 md:mb-0">Paragraph (Hero Body)</div>
+            <div class="col-span-12 md:col-span-6">
+              <p class="text-[21px] font-medium leading-[1.45] tracking-[-0.045em] text-[#f3f0e8]/76 md:text-[25px]">
+                Axisform builds launch operating systems for founders who need a sharper signal.
+              </p>
+            </div>
+            <div class="col-span-12 md:col-span-3 text-left md:text-right text-xs font-medium text-[#f3f0e8]/50">25px / 36.25px</div>
+          </div>
+
+          <!-- Regular L -->
+          <div class="grid grid-cols-12 gap-4 py-8 items-baseline">
+            <div class="col-span-12 md:col-span-3 text-xs font-bold uppercase tracking-[0.14em] text-[#f3f0e8]/44 mb-4 md:mb-0">Regular L</div>
+            <div class="col-span-12 md:col-span-6">
+              <p class="text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">The studio works in loops: read the field, reduce the noise, ship the system, then sharpen what survives contact.</p>
+            </div>
+            <div class="col-span-12 md:col-span-3 text-left md:text-right text-xs font-medium text-[#f3f0e8]/50">14px / 23.8px</div>
+          </div>
+
+          <!-- Regular M -->
+          <div class="grid grid-cols-12 gap-4 py-8 items-baseline">
+            <div class="col-span-12 md:col-span-3 text-xs font-bold uppercase tracking-[0.14em] text-[#f3f0e8]/44 mb-4 md:mb-0">Regular M</div>
+            <div class="col-span-12 md:col-span-6">
+              <p class="text-xs font-medium text-[#f3f0e8]/50">operating loops, week cycles, launch windows</p>
+            </div>
+            <div class="col-span-12 md:col-span-3 text-left md:text-right text-xs font-medium text-[#f3f0e8]/50">12px / 16px</div>
+          </div>
+
+          <!-- Regular S -->
+          <div class="grid grid-cols-12 gap-4 py-8 items-baseline">
+            <div class="col-span-12 md:col-span-3 text-xs font-bold uppercase tracking-[0.14em] text-[#f3f0e8]/44 mb-4 md:mb-0">Regular S</div>
+            <div class="col-span-12 md:col-span-6">
+              <p class="text-[10px] font-medium text-[#f3f0e8]/45">Global Studio, Montréal, Version 1.0.0</p>
+            </div>
+            <div class="col-span-12 md:col-span-3 text-left md:text-right text-xs font-medium text-[#f3f0e8]/50">10px / 14px</div>
+          </div>
+          
+          <!-- Image-Masked Text (Special Variant) -->
+          <div class="grid grid-cols-12 gap-4 py-10 items-baseline">
+            <div class="col-span-12 md:col-span-3 text-xs font-bold uppercase tracking-[0.14em] text-[#f3f0e8]/44 mb-4 md:mb-0">Masked Typo (Special)</div>
+            <div class="col-span-12 md:col-span-6">
+              <span class="masked-number text-[10rem] font-black leading-none tracking-[-0.09em] md:text-[14rem]" style='--number-image: url("assets/photo-1551836022-d5d88e9218df_c78fbb0a497c.avif")'>04</span>
+            </div>
+            <div class="col-span-12 md:col-span-3 text-left md:text-right text-xs font-medium text-[#f3f0e8]/50">Gradient-Masked Size Variant</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 2) COLORS & SURFACES -->
+    <section id="colors" class="ds-section px-5 md:px-8 lg:px-12">
+      <div class="mx-auto max-w-6xl">
+        <div class="grid gap-12 md:grid-cols-12 mb-16">
+          <div class="md:col-span-4">
+            <p class="section-label">02 / Colors & Surfaces</p>
+            <p class="mt-6 text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">
+              The primary and secondary palette values, surfacing tokens, borders, and overlays that form the visual structure.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          
+          <!-- Orange Swatch -->
+          <div class="glass rounded-[28px] p-5 flex flex-col gap-4">
+            <div class="h-24 w-full rounded-[18px]" style="background-color: var(--orange);"></div>
+            <div>
+              <h4 class="text-lg font-semibold tracking-[-0.05em]">Orange (Accent)</h4>
+              <p class="text-xs text-[#f3f0e8]/50 mt-1 font-mono">--orange: #ff5a1f</p>
+              <p class="text-xs text-[#f3f0e8]/70 mt-3">Primary brand color. Used for accents, indicators, CTA buttons, and high-contrast details.</p>
+            </div>
+          </div>
+
+          <!-- Orange Soft Swatch -->
+          <div class="glass rounded-[28px] p-5 flex flex-col gap-4">
+            <div class="h-24 w-full rounded-[18px]" style="background-color: var(--orange-soft);"></div>
+            <div>
+              <h4 class="text-lg font-semibold tracking-[-0.05em]">Orange Soft</h4>
+              <p class="text-xs text-[#f3f0e8]/50 mt-1 font-mono">--orange-soft: rgba(255,90,31,0.22)</p>
+              <p class="text-xs text-[#f3f0e8]/70 mt-3">Low-contrast orange highlight. Used for buttons background hover states and cards overlays.</p>
+            </div>
+          </div>
+
+          <!-- Cream Foreground -->
+          <div class="glass rounded-[28px] p-5 flex flex-col gap-4">
+            <div class="h-24 w-full rounded-[18px]" style="background-color: var(--cream);"></div>
+            <div>
+              <h4 class="text-lg font-semibold tracking-[-0.05em] text-[#060706]" style="color: var(--bg);">Cream</h4>
+              <p class="text-xs text-[#f3f0e8]/50 mt-1 font-mono">--cream: #f3f0e8</p>
+              <p class="text-xs text-[#f3f0e8]/70 mt-3">Primary foreground text and high-contrast card background. Soft, off-white hue.</p>
+            </div>
+          </div>
+
+          <!-- Muted Text -->
+          <div class="glass rounded-[28px] p-5 flex flex-col gap-4">
+            <div class="h-24 w-full rounded-[18px]" style="background-color: var(--muted);"></div>
+            <div>
+              <h4 class="text-lg font-semibold tracking-[-0.05em]">Muted Cream</h4>
+              <p class="text-xs text-[#f3f0e8]/50 mt-1 font-mono">--muted: rgba(243,240,232,0.58)</p>
+              <p class="text-xs text-[#f3f0e8]/70 mt-3">Secondary body text color. Softened to reduce screen contrast and establish visual order.</p>
+            </div>
+          </div>
+
+          <!-- Dark BG -->
+          <div class="glass rounded-[28px] p-5 flex flex-col gap-4">
+            <div class="h-24 w-full rounded-[18px] border border-white/10" style="background-color: var(--bg);"></div>
+            <div>
+              <h4 class="text-lg font-semibold tracking-[-0.05em]">Background</h4>
+              <p class="text-xs text-[#f3f0e8]/50 mt-1 font-mono">--bg: #060706</p>
+              <p class="text-xs text-[#f3f0e8]/70 mt-3">Deep dark, off-black base color. Applied as a background fill for the html page layout.</p>
+            </div>
+          </div>
+
+          <!-- Panel -->
+          <div class="glass rounded-[28px] p-5 flex flex-col gap-4">
+            <div class="h-24 w-full rounded-[18px]" style="background-color: var(--panel);"></div>
+            <div>
+              <h4 class="text-lg font-semibold tracking-[-0.05em]">Panel</h4>
+              <p class="text-xs text-[#f3f0e8]/50 mt-1 font-mono">--panel: #10110f</p>
+              <p class="text-xs text-[#f3f0e8]/70 mt-3">Alternative surface background. Utilized for deep-contrast panels and nested card blocks.</p>
+            </div>
+          </div>
+
+          <!-- Panel-2 -->
+          <div class="glass rounded-[28px] p-5 flex flex-col gap-4">
+            <div class="h-24 w-full rounded-[18px]" style="background-color: var(--panel-2);"></div>
+            <div>
+              <h4 class="text-lg font-semibold tracking-[-0.05em]">Panel 2</h4>
+              <p class="text-xs text-[#f3f0e8]/50 mt-1 font-mono">--panel-2: #151713</p>
+              <p class="text-xs text-[#f3f0e8]/70 mt-3">Lighter panel surface color. Utilized for high-contrast card structures and backgrounds.</p>
+            </div>
+          </div>
+
+          <!-- Glass/Blur Swatch -->
+          <div class="glass rounded-[28px] p-5 flex flex-col gap-4">
+            <div class="h-24 w-full rounded-[18px] glass flex items-center justify-center text-[10px] uppercase font-bold tracking-wider text-[#f3f0e8]/60">Blur Spec</div>
+            <div>
+              <h4 class="text-lg font-semibold tracking-[-0.05em]">Glass Surface</h4>
+              <p class="text-xs text-[#f3f0e8]/50 mt-1 font-mono">backdrop-filter: blur(18px)</p>
+              <p class="text-xs text-[#f3f0e8]/70 mt-3">Translucent overlays. Merges the foreground content layer with contextual backdrop glow.</p>
+            </div>
+          </div>
+
+          <!-- Radial Background Glow -->
+          <div class="glass rounded-[28px] p-5 flex flex-col gap-4">
+            <div class="h-24 w-full rounded-[18px] border border-white/5" style="background: radial-gradient(circle at center, rgba(255, 90, 31, 0.12), transparent 100%), var(--bg);"></div>
+            <div>
+              <h4 class="text-lg font-semibold tracking-[-0.05em]">Radial Glow</h4>
+              <p class="text-xs text-[#f3f0e8]/50 mt-1 font-mono">rgba(255,90,31,0.12)</p>
+              <p class="text-xs text-[#f3f0e8]/70 mt-3">Soft background lights. Ambient radial spheres positioned to guide scrolling focus.</p>
+            </div>
+          </div>
+
+          <!-- Border/Line -->
+          <div class="glass rounded-[28px] p-5 flex flex-col gap-4">
+            <div class="h-24 w-full rounded-[18px] flex items-center justify-center">
+              <div class="w-full border-t border-[#f3f0e8]/10"></div>
+            </div>
+            <div>
+              <h4 class="text-lg font-semibold tracking-[-0.05em]">Border / Divider</h4>
+              <p class="text-xs text-[#f3f0e8]/50 mt-1 font-mono">--line: rgba(243,240,232,0.10)</p>
+              <p class="text-xs text-[#f3f0e8]/70 mt-3">Grid lines, input dividers, and card borders. Soft, low contrast separator line.</p>
+            </div>
+          </div>
+
+          <!-- Noise Swatch -->
+          <div class="glass rounded-[28px] p-5 flex flex-col gap-4">
+            <div class="h-24 w-full rounded-[18px] relative overflow-hidden bg-[#060706]">
+              <div class="absolute inset-0 opacity-25" style="background-image: radial-gradient(rgba(255,255,255,.18) 1px, transparent 1px); background-size: 4px 4px;"></div>
+            </div>
+            <div>
+              <h4 class="text-lg font-semibold tracking-[-0.05em]">Noise Texture</h4>
+              <p class="text-xs text-[#f3f0e8]/50 mt-1 font-mono">opacity: 0.18</p>
+              <p class="text-xs text-[#f3f0e8]/70 mt-3">Static noise overlay applied on top of the document layout to simulate analog texture.</p>
+            </div>
+          </div>
+
+          <!-- Grid Veil Swatch -->
+          <div class="glass rounded-[28px] p-5 flex flex-col gap-4">
+            <div class="h-24 w-full rounded-[18px] relative overflow-hidden bg-[#060706] border border-white/5">
+              <div class="absolute inset-0 opacity-30" style="background-image: linear-gradient(rgba(243,240,232,.09) 1px, transparent 1px), linear-gradient(90deg, rgba(243,240,232,.09) 1px, transparent 1px); background-size: 20px 20px;"></div>
+            </div>
+            <div>
+              <h4 class="text-lg font-semibold tracking-[-0.05em]">Grid Veil</h4>
+              <p class="text-xs text-[#f3f0e8]/50 mt-1 font-mono">background-size: 80px 80px</p>
+              <p class="text-xs text-[#f3f0e8]/70 mt-3">Architectural grid blueprint pattern overlaid dynamically on background layers.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 3) UI COMPONENTS -->
+    <section id="components" class="ds-section px-5 md:px-8 lg:px-12">
+      <div class="mx-auto max-w-6xl">
+        <div class="grid gap-12 md:grid-cols-12 mb-16">
+          <div class="md:col-span-4">
+            <p class="section-label">03 / UI Components</p>
+            <p class="mt-6 text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">
+              Interactive buttons, cards, list panels, and text selectors side-by-side with state specifications.
+            </p>
+          </div>
+        </div>
+
+        <!-- Buttons Section -->
+        <div class="mb-16">
+          <h3 class="text-xl font-bold uppercase tracking-[0.12em] text-[#f3f0e8]/44 mb-8">Buttons</h3>
+          <div class="grid gap-10 lg:grid-cols-2">
+            
+            <!-- Magnetic Button (Primary Style) -->
+            <div class="glass rounded-[32px] p-8 flex flex-col gap-6">
+              <h4 class="text-sm font-semibold uppercase tracking-wider text-[#ff5a1f]">Magnetic Button with Icon</h4>
+              
+              <div class="flex flex-col gap-6">
+                <!-- Default -->
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-mono text-[#f3f0e8]/40">Default</span>
+                  <a class="magnetic-button inline-flex items-center gap-5 rounded-full border border-[#f3f0e8]/12 px-5 py-3 text-xs font-bold uppercase tracking-[0.18em] text-[#f3f0e8]" href="javascript:void(0)">
+                    View Selected Work
+                    <span class="flex h-8 w-8 items-center justify-center rounded-full bg-[#ff5a1f] text-[#060706]">
+                      <i class="h-4 w-4" data-lucide="arrow-right"></i>
+                    </span>
+                  </a>
+                </div>
+                
+                <!-- Hover (Simulated) -->
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-mono text-[#f3f0e8]/40">Hover</span>
+                  <a class="inline-flex items-center gap-5 rounded-full px-5 py-3 text-xs font-bold uppercase tracking-[0.18em] text-[#f3f0e8]" style="transform: translateY(-2px); border: 1px solid rgba(255,90,31,.45); background: rgba(255,90,31,.13);" href="javascript:void(0)">
+                    View Selected Work
+                    <span class="flex h-8 w-8 items-center justify-center rounded-full bg-[#ff5a1f] text-[#060706]">
+                      <i class="h-4 w-4" data-lucide="arrow-right"></i>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Simple Magnetic Button -->
+            <div class="glass rounded-[32px] p-8 flex flex-col gap-6">
+              <h4 class="text-sm font-semibold uppercase tracking-wider text-[#ff5a1f]">Simple Magnetic Button</h4>
+              
+              <div class="flex flex-col gap-6">
+                <!-- Default -->
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-mono text-[#f3f0e8]/40">Default</span>
+                  <a class="magnetic-button inline-flex rounded-full border border-[#f3f0e8]/12 px-5 py-3 text-xs font-bold uppercase tracking-[0.12em]" href="javascript:void(0)">
+                    Study the Loop
+                  </a>
+                </div>
+                
+                <!-- Hover (Simulated) -->
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-mono text-[#f3f0e8]/40">Hover</span>
+                  <a class="inline-flex rounded-full px-5 py-3 text-xs font-bold uppercase tracking-[0.12em]" style="transform: translateY(-2px); border: 1px solid rgba(255,90,31,.45); background: rgba(255,90,31,.13);" href="javascript:void(0)">
+                    Study the Loop
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Hero CTA -->
+            <div class="glass rounded-[32px] p-8 flex flex-col gap-6">
+              <h4 class="text-sm font-semibold uppercase tracking-wider text-[#ff5a1f]">Hero Floating CTA</h4>
+              
+              <div class="flex gap-12 items-center">
+                <!-- Default -->
+                <div class="flex flex-col gap-2 items-center">
+                  <span class="text-xs font-mono text-[#f3f0e8]/40">Default</span>
+                  <button aria-label="Explore" class="flex h-16 w-16 items-center justify-center rounded-full border border-white/20 bg-black/80 text-white shadow-2xl backdrop-blur transition duration-300">
+                    <i class="h-7 w-7" data-lucide="arrow-right"></i>
+                  </button>
+                </div>
+                
+                <!-- Hover -->
+                <div class="flex flex-col gap-2 items-center">
+                  <span class="text-xs font-mono text-[#f3f0e8]/40">Hover</span>
+                  <button aria-label="Explore" class="flex h-16 w-16 items-center justify-center rounded-full border border-white/20 bg-[#ff5a1f] text-white shadow-2xl backdrop-blur transition duration-300 scale-110">
+                    <i class="h-7 w-7" data-lucide="arrow-right"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Form Controls / Inputs Section -->
+        <div class="mb-16">
+          <h3 class="text-xl font-bold uppercase tracking-[0.12em] text-[#f3f0e8]/44 mb-8">Styled Inputs (Form Controls)</h3>
+          <div class="grid gap-10 md:grid-cols-2">
+            
+            <!-- Dropdown Selector -->
+            <div class="glass rounded-[32px] p-8 flex flex-col gap-6">
+              <h4 class="text-sm font-semibold uppercase tracking-wider text-[#ff5a1f]">Dropdown Selection Field</h4>
+              
+              <div class="flex flex-col gap-6">
+                <!-- Default -->
+                <div>
+                  <span class="text-xs font-mono text-[#f3f0e8]/40 block mb-2">Default</span>
+                  <div class="glass flex w-full max-w-sm items-center justify-between rounded-[22px] px-5 py-4 text-sm font-medium text-[#f3f0e8]/58 cursor-pointer">
+                    Select a Launch Window <i class="h-4 w-4" data-lucide="chevron-down"></i>
+                  </div>
+                </div>
+                
+                <!-- Hover (Simulated) -->
+                <div>
+                  <span class="text-xs font-mono text-[#f3f0e8]/40 block mb-2">Hover / Focus</span>
+                  <div class="flex w-full max-w-sm items-center justify-between rounded-[22px] px-5 py-4 text-sm font-medium text-[#f3f0e8] cursor-pointer" style="border: 1px solid rgba(255,90,31,.35); background: rgba(255,255,255,.06);">
+                    Select a Launch Window <i class="h-4 w-4" data-lucide="chevron-down"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Text Input Field -->
+            <div class="glass rounded-[32px] p-8 flex flex-col gap-6">
+              <h4 class="text-sm font-semibold uppercase tracking-wider text-[#ff5a1f]">Underline Input Field</h4>
+              
+              <div class="flex flex-col gap-6">
+                <!-- Default -->
+                <div>
+                  <span class="text-xs font-mono text-[#f3f0e8]/40 block mb-2">Default</span>
+                  <div class="w-full max-w-sm border-b border-[#f3f0e8]/10 py-5 text-sm font-medium text-[#f3f0e8]/58">
+                    Reach me at <span class="text-[#f3f0e8]">Email *</span>
+                  </div>
+                </div>
+                
+                <!-- Hover / Active -->
+                <div>
+                  <span class="text-xs font-mono text-[#f3f0e8]/40 block mb-2">Active / Typing</span>
+                  <div class="w-full max-w-sm border-b py-5 text-sm font-medium text-[#f3f0e8]" style="border-color: rgba(255, 90, 31, 0.5);">
+                    Reach me at <span class="text-[#f3f0e8]">hello@studio.com</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Cards Section -->
+        <div>
+          <h3 class="text-xl font-bold uppercase tracking-[0.12em] text-[#f3f0e8]/44 mb-8">Cards & Panels</h3>
+          <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            
+            <!-- Service Card (Dark Glass) -->
+            <div class="flex flex-col gap-4">
+              <span class="text-xs font-mono text-[#f3f0e8]/40">Service Card (Default)</span>
+              <div class="service-card glass rounded-[28px] p-6 min-h-[220px] flex flex-col justify-between">
+                <p class="text-xs font-bold uppercase tracking-[0.14em] text-[#f3f0e8]/44">01</p>
+                <div>
+                  <h3 class="text-2xl font-semibold tracking-[-0.05em]">Signal Audit</h3>
+                  <p class="mt-4 text-sm leading-[1.6] text-[#f3f0e8]/54">Find where the story is unclear and what the market should remember.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Service Card (Hover State Demo) -->
+            <div class="flex flex-col gap-4">
+              <span class="text-xs font-mono text-[#f3f0e8]/40">Service Card (Hover State)</span>
+              <div class="rounded-[28px] p-6 min-h-[220px] flex flex-col justify-between" style="transform: translateY(-8px); border-color: rgba(255,90,31,.34); background: rgba(255,255,255,.06); border-width: 1px;">
+                <p class="text-xs font-bold uppercase tracking-[0.14em] text-[#f3f0e8]/44">01</p>
+                <div>
+                  <h3 class="text-2xl font-semibold tracking-[-0.05em]">Signal Audit</h3>
+                  <p class="mt-4 text-sm leading-[1.6] text-[#f3f0e8]/54">Find where the story is unclear and what the market should remember.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Note Card (Cream Panel) -->
+            <div class="flex flex-col gap-4">
+              <span class="text-xs font-mono text-[#f3f0e8]/40">Note Card (Cream Solid)</span>
+              <div class="note-card relative min-h-[220px] overflow-hidden rounded-[38px] border border-[#f3f0e8]/10 bg-[#f3f0e8] p-6 text-[#060706] flex flex-col justify-between">
+                <div class="absolute -right-6 -top-8 text-[120px] font-black leading-none tracking-[-0.12em] text-[#060706]/[0.05]">01</div>
+                <div>
+                  <p class="text-[10px] font-black uppercase tracking-[0.18em] text-[#060706]/45">01 / Signal</p>
+                  <h3 class="mt-4 text-[26px] font-black leading-[0.95] tracking-[-0.07em]">Make the story repeatable.</h3>
+                </div>
+                <p class="text-xs font-semibold leading-[1.5] text-[#060706]/62 mt-4">Reduce the story to what buyers, investors, and users can repeat.</p>
+              </div>
+            </div>
+
+            <!-- Note Card (Dark Panel) -->
+            <div class="flex flex-col gap-4">
+              <span class="text-xs font-mono text-[#f3f0e8]/40">Note Card (Dark Panel)</span>
+              <div class="note-card relative overflow-hidden rounded-[38px] border border-[#f3f0e8]/10 bg-[#0c0f0c] p-6 text-[#f3f0e8] min-h-[220px] flex flex-col justify-between">
+                <div class="absolute right-6 top-6 h-12 w-12 rounded-full border border-[#f3f0e8]/10"></div>
+                <div>
+                  <p class="text-[10px] font-black uppercase tracking-[0.18em] text-[#f3f0e8]/42">04 / Handoff</p>
+                  <h3 class="text-2xl font-black leading-[0.9] tracking-[-0.08em] text-[#f3f0e8] mt-4">Build once. Reuse after launch.</h3>
+                </div>
+                <p class="text-xs font-medium leading-[1.6] text-[#f3f0e8]/56 mt-4">Give teams reusable material, not fragile one-off compositions.</p>
+              </div>
+            </div>
+
+            <!-- Pricing Card -->
+            <div class="flex flex-col gap-4">
+              <span class="text-xs font-mono text-[#f3f0e8]/40">Pricing Card (Glass)</span>
+              <div class="pricing-card glass rounded-[36px] p-6 flex flex-col justify-between min-h-[220px]">
+                <div class="flex items-baseline gap-3"><p class="text-3xl font-semibold tracking-[-0.06em]">$4,800</p><p class="text-sm font-semibold tracking-tight text-[#f3f0e8]/38">/sprint</p></div>
+                <h3 class="mt-4 text-2xl font-semibold tracking-[-0.07em]">Signal Sprint</h3>
+                <div class="mt-4 space-y-1">
+                  <p class="flex items-center gap-2 text-xs font-medium"><i class="h-3 w-3 text-[#ff5a1f]" data-lucide="check"></i> Positioning map</p>
+                  <p class="flex items-center gap-2 text-xs font-medium"><i class="h-3 w-3 text-[#ff5a1f]" data-lucide="check"></i> Visual direction</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Archive Image Card -->
+            <div class="flex flex-col gap-4">
+              <span class="text-xs font-mono text-[#f3f0e8]/40">Archive Card (Hover Transition)</span>
+              <div class="archive-card ds-motion-trigger h-[220px] w-full relative overflow-hidden rounded-[28px] border border-[#f3f0e8]/10 bg-[#101310] cursor-pointer">
+                <img alt="Archive image mockup" class="ds-motion-img-scale h-full w-full object-cover opacity-75 transition-all duration-700 ease-out" src="assets/b07ad449-1292-4c6b-aff4-6ce345_71ef9fad4dc6.png"/>
+                <div class="absolute bottom-4 left-4 right-4">
+                  <span class="ds-badge">Telemetry</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4) LAYOUT & SPACING -->
+    <section id="layout" class="ds-section px-5 md:px-8 lg:px-12">
+      <div class="mx-auto max-w-6xl">
+        <div class="grid gap-12 md:grid-cols-12 mb-16">
+          <div class="md:col-span-4">
+            <p class="section-label">04 / Layout & Spacing</p>
+            <p class="mt-6 text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">
+              Visual layouts demonstrating containers, grid offsets, column spans, and section spacing schemes.
+            </p>
+          </div>
+        </div>
+
+        <div class="space-y-16">
+          <!-- Layout Pattern 1: 12-Column Grid Offset -->
+          <div class="glass rounded-[32px] p-8">
+            <h4 class="text-sm font-semibold uppercase tracking-wider text-[#ff5a1f] mb-2">1. 12-Column Grid with Offset Label</h4>
+            <p class="text-xs text-[#f3f0e8]/50 mb-6 font-mono">Structure: grid md:grid-cols-12 | Label: col-span-3 | Offset-Content: col-span-8 col-start-5</p>
+            
+            <div class="grid grid-cols-12 gap-4">
+              <div class="col-span-12 md:col-span-3 ds-grid-pattern border-red-500/30 text-red-400">col-span-3 (Section label / title)</div>
+              <div class="col-span-12 md:col-span-1 ds-grid-pattern opacity-30">offset</div>
+              <div class="col-span-12 md:col-span-8 ds-grid-pattern border-orange-500/40 text-orange-300">col-span-8 (Core Content Area - Grids, Lists, Paragraphs)</div>
+            </div>
+          </div>
+
+          <!-- Layout Pattern 2: Split Cards Layout -->
+          <div class="glass rounded-[32px] p-8">
+            <h4 class="text-sm font-semibold uppercase tracking-wider text-[#ff5a1f] mb-2">2. Multi-column Split Grid inside Container</h4>
+            <p class="text-xs text-[#f3f0e8]/50 mb-6 font-mono">Structure: grid sm:grid-cols-2 lg:grid-cols-4 | gap: gap-3</p>
+            
+            <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              <div class="ds-grid-pattern border-white/10">Card 1 (col-span-1)</div>
+              <div class="ds-grid-pattern border-white/10">Card 2 (col-span-1)</div>
+              <div class="ds-grid-pattern border-white/10">Card 3 (col-span-1)</div>
+              <div class="ds-grid-pattern border-white/10">Card 4 (col-span-1)</div>
+            </div>
+          </div>
+
+          <!-- Layout Pattern 3: Section Padding Hierarchy -->
+          <div class="glass rounded-[32px] p-8">
+            <h4 class="text-sm font-semibold uppercase tracking-wider text-[#ff5a1f] mb-4">3. Section Paddings and Max-Width Spec</h4>
+            <div class="grid gap-6 md:grid-cols-3">
+              <div class="border border-[#f3f0e8]/10 rounded-[20px] p-5">
+                <p class="text-xs font-bold uppercase tracking-wider text-[#ff5a1f]">Mobile Padding</p>
+                <h5 class="text-lg font-semibold mt-2 font-mono">px-5 py-24</h5>
+                <p class="text-xs text-[#f3f0e8]/50 mt-2">Applied on screens &lt; 768px wide.</p>
+              </div>
+              <div class="border border-[#f3f0e8]/10 rounded-[20px] p-5">
+                <p class="text-xs font-bold uppercase tracking-wider text-[#ff5a1f]">Tablet Padding</p>
+                <h5 class="text-lg font-semibold mt-2 font-mono">md:px-8 py-24</h5>
+                <p class="text-xs text-[#f3f0e8]/50 mt-2">Applied on screens &gt;= 768px wide.</p>
+              </div>
+              <div class="border border-[#f3f0e8]/10 rounded-[20px] p-5">
+                <p class="text-xs font-bold uppercase tracking-wider text-[#ff5a1f]">Desktop Padding & Limit</p>
+                <h5 class="text-lg font-semibold mt-2 font-mono">lg:px-12 | max-w-6xl</h5>
+                <p class="text-xs text-[#f3f0e8]/50 mt-2">Applied on screens &gt;= 1024px. Containers centered via mx-auto.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5) MOTION & INTERACTION -->
+    <section id="motion" class="ds-section px-5 md:px-8 lg:px-12">
+      <div class="mx-auto max-w-6xl">
+        <div class="grid gap-12 md:grid-cols-12 mb-16">
+          <div class="md:col-span-4">
+            <p class="section-label">05 / Motion & Interaction</p>
+            <p class="mt-6 text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">
+              Interactive demonstrations of entrance reveals, magnetic hovering, and scroll triggers.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid gap-8 md:grid-cols-2">
+          
+          <!-- Entrance reveal animation -->
+          <div class="glass rounded-[32px] p-8 flex flex-col justify-between">
+            <div>
+              <h4 class="text-sm font-semibold uppercase tracking-wider text-[#ff5a1f] mb-2">1. Entrance Reveal</h4>
+              <p class="text-xs text-[#f3f0e8]/50 mb-6 font-mono">Class: .reveal | opacity: 0 -> 1 | transform: translateY(32px) -> translateY(0)</p>
+              
+              <div class="my-8 flex justify-center items-center h-28">
+                <div id="reveal-demo-element" class="reveal glass rounded-[20px] p-5 text-sm font-semibold text-center border-orange-500/20 max-w-xs transition-all duration-700 ease-[cubic-bezier(.22,1,.36,1)]">
+                  Simulated Reveal Element
+                </div>
+              </div>
+            </div>
+
+            <button onclick="triggerReveal()" class="magnetic-button inline-flex self-start rounded-full border border-[#f3f0e8]/12 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.12em]">
+              Trigger Reveal Animation
+            </button>
+          </div>
+
+          <!-- Preloader progress bar animation -->
+          <div class="glass rounded-[32px] p-8 flex flex-col justify-between">
+            <div>
+              <h4 class="text-sm font-semibold uppercase tracking-wider text-[#ff5a1f] mb-2">2. Brand Loader Progress</h4>
+              <p class="text-xs text-[#f3f0e8]/50 mb-6 font-mono">Class: .ax-loader__bar | transition: scaleX(0) -> scaleX(1)</p>
+              
+              <div class="my-8 ax-loader-demo">
+                <div class="ax-loader__inner">
+                  <div class="ax-loader__brand" style="opacity: 1; transform: none; filter: none; font-size: 2.2rem;">
+                    <span>Axisform</span><sup>®</sup><span class="ax-dot"></span>
+                  </div>
+                  <div class="ax-loader__track" style="width: 200px;">
+                    <div id="loader-demo-bar" class="ax-loader__bar" style="transform: scaleX(0);"></div>
+                  </div>
+                  <div class="ax-loader__meta" style="opacity: 0.8; width: 200px;">
+                    <span id="loader-demo-pct" class="ax-loader__pct">000</span>
+                    <span>Running Demo</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button onclick="playLoaderDemo()" class="magnetic-button inline-flex self-start rounded-full border border-[#f3f0e8]/12 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.12em]">
+              Run Loader Animation
+            </button>
+          </div>
+
+          <!-- Micro-interactions triggers -->
+          <div class="glass rounded-[32px] p-8 ds-motion-trigger">
+            <h4 class="text-sm font-semibold uppercase tracking-wider text-[#ff5a1f] mb-2">3. Button & Card Hover Transitions</h4>
+            <p class="text-xs text-[#f3f0e8]/50 mb-8">Hover anywhere in this block to trigger child hover states simultaneously.</p>
+            
+            <div class="grid gap-6 sm:grid-cols-2">
+              <div class="flex flex-col gap-2 items-center">
+                <span class="text-[10px] font-mono text-[#f3f0e8]/45">Card Lift (translateY(-8px))</span>
+                <div class="ds-motion-box ds-motion-box-lift text-lg font-bold">✳</div>
+              </div>
+              <div class="flex flex-col gap-2 items-center">
+                <span class="text-[10px] font-mono text-[#f3f0e8]/45">Button Lift (translateY(-2px))</span>
+                <div class="ds-motion-box ds-motion-box-magnetic text-lg font-bold">→</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Paralax/Image Motion Trigger -->
+          <div class="glass rounded-[32px] p-8 ds-motion-trigger">
+            <h4 class="text-sm font-semibold uppercase tracking-wider text-[#ff5a1f] mb-2">4. Image Zoom Transition</h4>
+            <p class="text-xs text-[#f3f0e8]/50 mb-6">Hover this container to see the background image scale smoothly.</p>
+            
+            <div class="h-44 w-full relative overflow-hidden rounded-[20px] border border-[#f3f0e8]/10 bg-[#101310] flex items-center justify-center">
+              <img alt="Motion visual mockup" class="ds-motion-img-scale absolute inset-0 h-full w-full object-cover opacity-60 transition-all duration-700 ease-out" src="assets/e1f39209-cbcc-4857-bc13-744562_17e38ca48f84.png"/>
+              <div class="relative z-10 text-xs font-bold uppercase tracking-wider text-[#f3f0e8]">Scale factor: 1.08 -> 1.16</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 6) ICONS -->
+    <section id="icons" class="ds-section px-5 md:px-8 lg:px-12">
+      <div class="mx-auto max-w-6xl">
+        <div class="grid gap-12 md:grid-cols-12 mb-16">
+          <div class="md:col-span-4">
+            <p class="section-label">06 / Icons</p>
+            <p class="mt-6 text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">
+              Lucide icons used in the studio layout, showcasing sizes, classes, and colors.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-4">
+          
+          <!-- Icon 1: Arrow Right -->
+          <div class="glass rounded-[28px] p-6 flex flex-col items-center gap-4 text-center">
+            <div class="h-16 w-16 rounded-full bg-[#ff5a1f] text-[#060706] flex items-center justify-center">
+              <i class="h-7 w-7" data-lucide="arrow-right"></i>
+            </div>
+            <div>
+              <h4 class="text-base font-semibold">arrow-right</h4>
+              <p class="text-[10px] text-[#f3f0e8]/40 mt-1 font-mono">data-lucide="arrow-right"</p>
+              <p class="text-xs text-[#f3f0e8]/60 mt-3">Used in primary CTAs and float navigation indicators.</p>
+            </div>
+          </div>
+
+          <!-- Icon 2: Check -->
+          <div class="glass rounded-[28px] p-6 flex flex-col items-center gap-4 text-center">
+            <div class="h-16 w-16 rounded-full border border-[#f3f0e8]/10 flex items-center justify-center text-[#ff5a1f]">
+              <i class="h-6 w-6" data-lucide="check"></i>
+            </div>
+            <div>
+              <h4 class="text-base font-semibold">check</h4>
+              <p class="text-[10px] text-[#f3f0e8]/40 mt-1 font-mono">data-lucide="check"</p>
+              <p class="text-xs text-[#f3f0e8]/60 mt-3">Used for list bullet ticks and feature checks on pricing cards.</p>
+            </div>
+          </div>
+
+          <!-- Icon 3: Chevron Down -->
+          <div class="glass rounded-[28px] p-6 flex flex-col items-center gap-4 text-center">
+            <div class="h-16 w-16 rounded-full border border-[#f3f0e8]/10 flex items-center justify-center text-[#f3f0e8]/70">
+              <i class="h-6 w-6" data-lucide="chevron-down"></i>
+            </div>
+            <div>
+              <h4 class="text-base font-semibold">chevron-down</h4>
+              <p class="text-[10px] text-[#f3f0e8]/40 mt-1 font-mono">data-lucide="chevron-down"</p>
+              <p class="text-xs text-[#f3f0e8]/60 mt-3">Used inside selectors to represent dropdown expansion options.</p>
+            </div>
+          </div>
+
+          <!-- Icon 4: Menu -->
+          <div class="glass rounded-[28px] p-6 flex flex-col items-center gap-4 text-center">
+            <div class="h-16 w-16 rounded-full border border-[#f3f0e8]/10 flex items-center justify-center text-[#f3f0e8]">
+              <i class="h-6 w-6" data-lucide="menu"></i>
+            </div>
+            <div>
+              <h4 class="text-base font-semibold">menu</h4>
+              <p class="text-[10px] text-[#f3f0e8]/40 mt-1 font-mono">data-lucide="menu"</p>
+              <p class="text-xs text-[#f3f0e8]/60 mt-3">Used on the header bar as mobile menu expansion button.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-section relative min-h-screen overflow-hidden px-5 py-24 md:px-8 lg:px-12" id="footer">
+      <div class="grid gap-12 md:grid-cols-12">
+        <div class="md:col-span-3"><p class="section-label">Axisform® DS</p></div>
+        <div class="md:col-span-9"><h2 class="footer-wordmark wordmark text-[5rem] font-black leading-none sm:text-[8rem] md:text-[11rem] lg:text-[14rem]">Axisform®</h2></div>
+      </div>
+      <div class="absolute right-5 top-28 text-xs font-bold uppercase tracking-[0.14em] text-[#f3f0e8]/44 md:right-8">© 2020–26</div>
+      <div class="footer-links absolute bottom-16 left-5 right-5 grid gap-10 border-t border-[#f3f0e8]/12 pt-10 md:left-8 md:right-8 md:grid-cols-12">
+        <div class="md:col-span-5">
+          <p class="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-[#f3f0e8]/36">Living Design System / 2026</p>
+          <h3 class="max-w-xl text-[42px] font-black leading-[0.92] tracking-[-0.07em] text-[#f3f0e8] md:text-[64px] lg:text-[76px]">
+            Visual system and design guidelines.
+          </h3>
+        </div>
+        <div class="md:col-span-3 md:col-start-7">
+          <p class="text-xs font-bold uppercase tracking-[0.22em] text-[#f3f0e8]/36">Reference</p>
+          <p class="mt-6 text-sm font-medium leading-[1.75] text-[#f3f0e8]/58">
+            This design system acts as the single source of truth for design tokens, typography styles, button variations, and layout structures used across projects.
+          </p>
+        </div>
+        <div class="md:col-span-2 md:col-start-11">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-[0.22em] text-[#f3f0e8]/36">Sections</p>
+            <div class="mt-6 space-y-4 text-sm font-bold text-[#f3f0e8]/72">
+              <a class="group flex items-center justify-between transition hover:text-[#f3f0e8]" href="#hero">Hero <span class="text-[#f3f0e8]/28 transition group-hover:translate-x-1 group-hover:text-[#f3f0e8]">→</span></a>
+              <a class="group flex items-center justify-between transition hover:text-[#f3f0e8]" href="#typography">Typography <span class="text-[#f3f0e8]/28 transition group-hover:translate-x-1 group-hover:text-[#f3f0e8]">→</span></a>
+              <a class="group flex items-center justify-between transition hover:text-[#f3f0e8]" href="#colors">Colors <span class="text-[#f3f0e8]/28 transition group-hover:translate-x-1 group-hover:text-[#f3f0e8]">→</span></a>
+              <a class="group flex items-center justify-between transition hover:text-[#f3f0e8]" href="#components">Components <span class="text-[#f3f0e8]/28 transition group-hover:translate-x-1 group-hover:text-[#f3f0e8]">→</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="md:col-span-12">
+          <div class="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-[#f3f0e8]/12 pt-5">
+            <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#f3f0e8]/34">© 2020-2026 Axisform® Design System</p>
+            <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#f3f0e8]/34">Montréal / Global Studio / Living Documentation</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Lucide Icon Replacement
+    if (window.lucide) {
+      lucide.createIcons();
+    }
+
+    // Motion Interactive Scripts
+    function triggerReveal() {
+      const demo = document.getElementById('reveal-demo-element');
+      if (window.gsap) {
+        gsap.killTweensOf(demo);
+        gsap.fromTo(demo, 
+          { opacity: 0, y: 32 }, 
+          { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
+        );
+      } else {
+        // Fallback if GSAP is not loaded/fails
+        demo.style.opacity = '0';
+        demo.style.transform = 'translateY(32px)';
+        setTimeout(() => {
+          demo.style.opacity = '1';
+          demo.style.transform = 'translateY(0)';
+        }, 50);
+      }
+    }
+
+    // Initial manual trigger for preview
+    setTimeout(triggerReveal, 500);
+
+    function playLoaderDemo() {
+      const bar = document.getElementById('loader-demo-bar');
+      const pct = document.getElementById('loader-demo-pct');
+      if (!bar || !pct) return;
+      
+      let progress = 0;
+      bar.style.transform = 'scaleX(0)';
+      pct.textContent = '000';
+      
+      clearInterval(window.loaderDemoInterval);
+      window.loaderDemoInterval = setInterval(() => {
+        progress += 2;
+        if (progress > 100) progress = 100;
+        bar.style.transform = `scaleX(${progress / 100})`;
+        pct.textContent = String(progress).padStart(3, '0');
+        if (progress === 100) {
+          clearInterval(window.loaderDemoInterval);
+        }
+      }, 30);
+    }
+  </script>
+</body>
+</html>

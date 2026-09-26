@@ -275,7 +275,7 @@ html.is-loading { overflow: hidden; }
 /* Covers the whole pinned #projetos viewport; no fill of its own so the split bares the real
    scene (cards, light-field) sitting behind it, not a stand-in color. Scoped to #projetos only —
    the Serviços -> Processo flash below is a plain standalone pinned section, not an overlay. */
-html.cine #projetos .chapter-flash { display: block; position: absolute; inset: 0; z-index: 6; background: none; }
+html.cine #projetos .chapter-flash { display: block; position: absolute; inset: 0; z-index: 6; background: none; pointer-events: none; }
 html.cine #projetos .chapter-word { padding: 0; position: absolute; inset: 0; z-index: 6; display: grid; place-items: center; }
 /* Serviços -> Processo: a fixed black curtain fades in over whichever scene is on screen (still
    Serviços at first), shows "PROCESSO", clears the word, then fades itself out to bare Processo —
@@ -366,16 +366,23 @@ html.cine .scroll-call { right: 2.2vw; bottom: 5rem; }
 .sign-card:nth-child(5) { --bz: 7.5s; }
 .sign-card:nth-child(6) { --bz: 9.5s; }
 .sign-card:nth-child(7) { --bz: 6s; }
-.sign-visual { position: absolute; inset: 0; z-index: 0; display: block; }
+.sign-visual { position: absolute; inset: 0; z-index: 0; display: block; transition: box-shadow .45s var(--ease); }
 .sign-visual img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease), filter .4s var(--ease); }
 .sign-visual.ph-slot { border: none; padding: 1.2rem; display: flex; align-items: flex-start; justify-content: flex-start; text-align: left; }
-a.sign-visual { transition: box-shadow .45s var(--ease); }
-a.sign-visual:hover, a.sign-visual:focus-visible { box-shadow: inset 0 0 0 1px var(--sign-core), inset 0 0 34px rgba(196,0,0,.4); }
-a.sign-visual:hover img, a.sign-visual:focus-visible img { transform: scale(1.04); filter: brightness(1.08); }
-.sign-visual-cap { position: absolute; top: 1.1rem; right: 1.1rem; z-index: 2; padding: .5rem .8rem; border-radius: 999px; background: rgba(10,7,8,.72); color: var(--sign-tint); text-shadow: 0 0 10px var(--sign-core); opacity: 0; transform: translateY(-.3rem); transition: opacity .3s var(--ease), transform .3s var(--ease); }
-a.sign-visual:hover .sign-visual-cap, a.sign-visual:focus-visible .sign-visual-cap { opacity: 1; transform: translateY(0); }
+/* The image itself is no longer the link — only the card's .btn is — so the zoom/glow feedback
+   keys off hovering or focusing anywhere in the card, not off .sign-visual being an <a>. */
+.sign-card:hover .sign-visual, .sign-card:focus-within .sign-visual { box-shadow: inset 0 0 0 1px var(--sign-core), inset 0 0 34px rgba(196,0,0,.4); }
+.sign-card:hover .sign-visual img, .sign-card:focus-within .sign-visual img { transform: scale(1.04); filter: brightness(1.08); }
 .sign-scrim { position: absolute; inset: 0; z-index: 1; background: linear-gradient(0deg, rgba(10,7,8,.94) 0%, rgba(10,7,8,.7) 32%, rgba(10,7,8,.1) 64%, transparent 80%); pointer-events: none; }
-.sign-content { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 1.5rem 1.6rem 1.6rem; }
+.sign-content { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 1.5rem 1.6rem 1.6rem; pointer-events: none; }
+.sign-content a { pointer-events: auto; }
+.sign-content .btn { margin-top: 1rem; }
+/* Cycles through each linked project's own cover shot instead of one static photo — every image
+   shares the box (.sign-visual img already sits inset:0), a fade keyframe just takes turns. */
+.sign-visual-cycle img { opacity: 0; animation: sign-cycle 12s ease-in-out infinite; }
+.sign-visual-cycle img:first-child { opacity: 1; }
+.sign-visual-cycle img:nth-child(2) { animation-delay: -6s; }
+@keyframes sign-cycle { 0%, 40% { opacity: 1; } 50%, 90% { opacity: 0; } 100% { opacity: 1; } }
 /* Motel-sign lettering: one tube face per card. The name keeps the display face (.display); only the light changes.
    Each letter is a .motel-ch tube that motel-sign.js lights (home.js: when the card is active, or scrolled into view on mobile).
    Lit tube: white-hot core, red inner glow, wide halo, plus a wash of light on the wall behind. */
@@ -514,6 +521,18 @@ a.sign-visual:hover .sign-visual-cap, a.sign-visual:focus-visible .sign-visual-c
 
 /* ---------- Case pages ---------- */
 .case-hero { padding: 13rem var(--section-pad) 4rem; background: radial-gradient(circle 84px at 86% 70%, rgba(255,64,26,.42) 0 96%, transparent 100%), radial-gradient(44vw 55% at 84% 30%, rgba(255,40,0,.15), transparent 72%), #070609; position: relative; overflow: hidden; }
+/* Sites institucionais listing: the hero video runs the full length of the page (body-level,
+   position:fixed) instead of staying inside .case-hero, so the ornamental circle gradients
+   .case-hero/.case-cta/.night-index normally paint for other pages are dropped here in favor
+   of it — scoped to body.has-page-video so dmr-info's own case-study page keeps its own look. */
+.case-hero-video { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.case-hero-video video { display: block; width: 100%; height: 100%; object-fit: cover; opacity: .4; }
+/* Flat, not a top/bottom gradient: this layer is position:fixed (viewport-relative), so a
+   gradient here would band light/dark by scroll position instead of staying one look page-wide. */
+.case-hero-video::after { content: ''; position: absolute; inset: 0; background: rgba(7,6,9,.64); }
+body.has-page-video main#main { position: relative; z-index: 1; }
+body.has-page-video .case-hero, body.has-page-video .case-cta { background: transparent; }
+#lista { background: transparent; }
 .case-hero h1 { font-size: clamp(2.6rem, 8vw, 7rem); line-height: .88; margin: 1.6rem 0 1.6rem; max-width: 16ch; }
 .case-hero .scene-lede { font-size: clamp(1rem, 1.3vw, 1.25rem); color: rgba(242,238,229,.78); }
 .case-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: .8rem; margin-top: 3rem; }
